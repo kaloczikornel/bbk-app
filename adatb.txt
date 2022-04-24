@@ -1,0 +1,33 @@
+Adatbázis tervezés
+
+Entitások
+    -Felhasználó
+        -id
+        -teljes név
+        -felhasználónév
+        -jelszó
+        -e-mail
+        -szig szám
+        -állapot
+        -kollégiumi kártya
+        -jogkör
+    -Események
+        -id
+        -név
+        -helyszín
+        -dátum
+        -leírás
+    -Blogposzt
+        -id
+        -cím
+        -összefoglaló
+        -tartalom
+    -Eseményre jelentkezettek
+        -id
+        -eseményID
+        -userID
+        -lemondta flag
+        -fizetett flag
+        -eljött flag
+
+

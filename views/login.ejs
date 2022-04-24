@@ -1,0 +1,42 @@
+<%- include('header') -%>
+<div class="container w-50 mt-5">
+    <div class="row mb-5 col-12">
+        <h1>Bejelentkezés</h1>
+    </div>
+    <div class="row col-12 shadow p-5 mb-5 bg-body rounded">
+        <form>
+            <div class="mb-3 p-2">
+                <div class="form-floating">
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="name"
+                            placeholder="Felhasználó név"
+                    />
+                    <label for="name">Felhasználó név</label>
+                </div>
+            </div>
+            <div class="mb-3 p-2">
+                <div class="form-floating">
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="password"
+                            placeholder="Jelszó"
+                    />
+                    <label for="password">Jelszó</label>
+                </div>
+            </div>
+            <div class="mb-3 p-2">
+                <a type="submit" class="btn btn-primary" href="/">Bejelentkezés</a>
+            </div>
+            <div class=" p-2 justify-content-center">
+                <a href="/forgotten">Elfelejtett jelszó</a>
+            </div>
+            <div class="mb-3 p-2 justify-content-center">
+                <a href="/reg">Még nem vagy tag?</a>
+            </div>
+        </form>
+    </div>
+</div>
+<%- include('footer') -%>

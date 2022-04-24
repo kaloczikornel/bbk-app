@@ -1,0 +1,109 @@
+<%- include('header') -%>
+<div class="container w-50 mt-5">
+    <div class="row mb-5 col-12">
+        <h1>Regisztráció</h1>
+    </div>
+    <div class="row col-12 shadow p-5 mb-5 bg-body rounded">
+        <form>
+            <div class="mb-3 p-2">
+                <div class="form-floating">
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="name"
+                            placeholder="Felhasználónév"
+                    />
+                    <label for="name">Felhasználónév</label>
+                </div>
+            </div>
+            <div class="mb-3 p-2">
+                <div class="form-floating">
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="fullName"
+                            placeholder="Teljes név"
+                    />
+                    <label for="fullName">Teljes név</label>
+                </div>
+            </div>
+            <div class="mb-3 p-2">
+                <div class="form-floating">
+                    <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            placeholder="E-mail cím"
+                    />
+                    <label for="email">E-mail</label>
+                </div>
+            </div>
+            <div class="mb-3 p-2">
+                <div class="form-floating">
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="IDCard"
+                            placeholder="Felhasználónév"
+                    />
+                    <label for="IDCard">Személyi igazolvány szám</label>
+                </div>
+            </div>
+
+            <div class="mb-3 p-2">
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect"
+                    >Mi vagy</label
+                    >
+                    <select class="form-select" id="inputGroupSelect">
+                        <option selected>Válassz...</option>
+                        <option value="1">Kolis</option>
+                        <option value="2">VIK-es</option>
+                        <option value="3">Külsős</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3 p-2">
+                <div class="form-check">
+                    <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="hostelCard"
+                    />
+                    <label class="form-check-label" for="hostelCard">
+                        Van kollégiumi kártyád?
+                    </label>
+                </div>
+            </div>
+
+            <div class="mb-3 p-2">
+                <div class="form-floating">
+                    <input
+                            type="password"
+                            class="form-control"
+                            id="password"
+                            placeholder="Jelszó"
+                    />
+                    <label for="password">Jelszó</label>
+                </div>
+            </div>
+            <div class="mb-3 p-2">
+                <div class="form-floating">
+                    <input
+                            type="password"
+                            class="form-control"
+                            id="password2"
+                            placeholder="Jelszó még egyszer"
+                    />
+                    <label for="password2">Jelszó még egyszer</label>
+                </div>
+            </div>
+            <div class="mb-3 p-2">
+                <button type="submit" class="btn btn-primary">Regisztrálás</button>
+                <a class="btn btn-danger" href="/login">Mégse</a>
+            </div>
+        </form>
+    </div>
+</div>
+<%- include('footer') -%>

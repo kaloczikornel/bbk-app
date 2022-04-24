@@ -1,10 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <title>Eseméynre jelentkezés</title>
+    <link href="./css/bootstrap.min.css" rel="stylesheet" />
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+            crossorigin="anonymous"
+    />
+    <script
+            src="https://kit.fontawesome.com/db0a0668bc.js"
+            crossorigin="anonymous"
+    ></script>
 </head>
 <body>
-
+<div>
+    <nav
+            class="navbar navbar-expand-lg navbar-light"
+            style="background-color: #831f29"
+    >
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/home.html">
+                <img
+                        src="https://via.placeholder.com/150"
+                        alt=""
+                        width="30"
+                        height="30"
+                />
+            </a>
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/home.html"
+                        >Főoldal</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/events.html">Események</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile.html">Profilom</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <button
+                            type="button"
+                            class="btn btn-outline-light-light"
+                            href="#"
+                    >
+                        Kijelentkezés
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="container mt-5">
+    <div class="row">
+        <h1>Felhasználók listája</h1>
+    </div>
+    <div class="row">
+        <div class="col-12 mt-5">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Teljes név</th>
+                    <th>Felhasználónév</th>
+                    <th>Poszt</th>
+                    <th>&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Mark</td>
+                    <td>markvagyoklol</td>
+                    <td>tag</td>
+                    <td style="width: 30px; white-space: nowrap">
+                        <a href="#" class="btn btn-sm btn-primary">
+                            <i class="fa-solid fa-user-pen"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Jacob</td>
+                    <td>jacobbaaaa</td>
+                    <td>felhasználó</td>
+                    <td style="width: 30px; white-space: nowrap">
+                        <a href="#" class="btn btn-sm btn-primary">
+                            <i class="fa-solid fa-user-pen"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Béla</td>
+                    <td>belaaavok</td>
+                    <td>felhasználó</td>
+                    <td style="width: 30px; white-space: nowrap">
+                        <a href="#" class="btn btn-sm btn-primary">
+                            <i class="fa-solid fa-user-pen"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 </body>
 </html>

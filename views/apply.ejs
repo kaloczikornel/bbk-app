@@ -1,0 +1,96 @@
+<%- include('header') -%>
+<%- include('menu') -%>
+<div class="container mt-5">
+    <div class="row">
+        <h1>Eseményre jelentkezés</h1>
+    </div>
+    <div class="row">
+        <div class="col-xl-6 col-sm-12 mt-5">
+            <div
+                    class="card mb-3"
+                    style="max-width: 600px; margin-left: auto; margin-right: auto"
+            >
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img
+                                src="https://via.placeholder.com/600"
+                                class="img-fluid rounded-start"
+                                alt="..."
+                        />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">
+                                This is a wider card with supporting text below as a natural
+                                lead-in to additional content. This content is a little bit
+                                longer.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-sm-12 mt-5">
+            <div class="row col-12 shadow p-5 mb-5 bg-body rounded">
+                <form>
+                    <div class="mb-3 p-2">
+                        <div class="form-floating">
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    id="fullName"
+                                    placeholder="Teljes név"
+                            />
+                            <label for="fullName">Teljes név</label>
+                        </div>
+                    </div>
+                    <div class="mb-3 p-2">
+                        <div class="form-floating">
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    id="IDCard"
+                                    placeholder="Felhasználónév"
+                            />
+                            <label for="IDCard">Személyi igazolvány szám</label>
+                        </div>
+                    </div>
+                    <div class="mb-3 p-2">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect"
+                            >Mi vagy</label
+                            >
+                            <select class="form-select" id="inputGroupSelect">
+                                <option selected>Válassz...</option>
+                                <option value="1">Kolis</option>
+                                <option value="2">VIK-es</option>
+                                <option value="3">Külsős</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3 p-2">
+                        <div class="form-check">
+                            <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    value=""
+                                    id="hostelCard"
+                            />
+                            <label class="form-check-label" for="hostelCard">
+                                Van kollégiumi kártyád?
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mb-3 p-2">
+                        <a type="submit" class="btn btn-primary" href="/profile">
+                            Jelentkezés
+                        </a>
+                        <a class="btn btn-danger" href="/events">Mégse</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('footer') -%>

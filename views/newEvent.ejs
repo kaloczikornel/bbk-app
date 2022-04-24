@@ -1,0 +1,51 @@
+<%- include('header') -%>
+<%- include('menu') -%>
+<div class="container mt-5">
+    <div class="row">
+        <h1>Esemény létrehozása</h1>
+    </div>
+    <div class="row col-12 shadow p-5 mb-5 mt-5 bg-body rounded">
+        <form>
+            <div class="mb-3 p-2">
+                <div class="form-floating">
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="name"
+                            placeholder="Esemény címe"
+                    />
+                    <label for="name">Esemény címe</label>
+                </div>
+            </div>
+            <div class="mb-3 p-2">
+                <div class="form-floating">
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="fullName"
+                            placeholder="Helyszín"
+                    />
+                    <label for="fullName">Helyszín</label>
+                </div>
+            </div>
+            <div class="mb-3 p-2">
+                <label for="date">Choose a date</label>
+                <duet-date-picker identifier="date"></duet-date-picker>
+            </div>
+            <div class="mb-3 p-2">
+                <div class="input-group">
+                    <span class="input-group-text">Leírás</span>
+                    <textarea
+                            class="form-control"
+                            aria-label="With textarea"
+                    ></textarea>
+                </div>
+            </div>
+            <div class="mb-3 p-2">
+                <a type="submit" class="btn btn-primary" href="/events">Létrehozás</a>
+                <a class="btn btn-danger" href="/">Mégse</a>
+            </div>
+        </form>
+    </div>
+</div>
+<%- include('footer') -%>
