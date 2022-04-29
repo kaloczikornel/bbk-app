@@ -23,7 +23,6 @@ module.exports = function (objectrepository) {
                 return next();
             }
             req.session.user_id = user._id;
-            res.locals.user_id = user._id;
             return req.session.save(err => {
                 if (err) {
                     return next(err);

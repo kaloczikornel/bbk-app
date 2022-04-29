@@ -13,7 +13,6 @@ module.exports = function (objectrepository) {
             (typeof req.body.password2 === 'undefined') ||
             (typeof res.locals.error !== 'undefined')
         ) {
-            console.log("AJAJJJJ");
             return next();
         }
 
@@ -30,8 +29,7 @@ module.exports = function (objectrepository) {
         res.locals.user.hostelCard = req.body.hostelCard === undefined;
         res.locals.user.livingType = req.body.livingType;
         res.locals.user.password = req.body.password;
-
-        console.log(res.locals.user);
+        res.locals.user.authority = "Admin";
 
         res.locals.user.save(err => {
             if (err) {
