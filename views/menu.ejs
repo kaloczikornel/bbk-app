@@ -36,9 +36,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/blog">Blog</a>
                     </li>
+                    <% if (typeof user_id !== 'undefined'){ %>
                     <li class="nav-item">
                         <a class="nav-link" href="/profile">Profilom</a>
                     </li>
+                    <% } %>
+                    <% if (authority === "Admin"){ %>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                            data-bs-toggle="dropdown" aria-expanded="false">
@@ -50,9 +53,9 @@
                             <li><a class="dropdown-item" href="/users">Felhasználók szerkesztése</a></li>
                         </ul>
                     </li>
+                    <% } %>
                 </ul>
                 <div class="d-flex">
-                    <div><%= user_id %></div>
                     <% if (typeof user_id !== 'undefined'){ %>
                         <a class="btn btn-outline-light-light" href="/logout">
                             Kijelentkezés
