@@ -78,9 +78,10 @@ module.exports = function (app) {
     render(objRepo, "events")
   );
   app.use(
-    "event/:eventid/applicants",
+    "/event/:eventid/applicants",
     auth(objRepo),
     getLoginData(objRepo),
+    getEventByID(objRepo),
     getApplicants(objRepo),
     saveApplicant(objRepo),
     render(objRepo, "applicants")
