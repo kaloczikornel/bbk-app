@@ -22,10 +22,11 @@ Entitások
         -cím
         -összefoglaló
         -tartalom
+        -szerző
     -Eseményre jelentkezettek
         -id
-        -eseményID
-        -userID
+        -eseményID -ref
+        -userID - ref
         -lemondta flag
         -fizetett flag
         -eljött flag
