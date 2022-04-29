@@ -52,13 +52,17 @@
                     </li>
                 </ul>
                 <div class="d-flex">
-                    <a
-                            type="button"
-                            class="btn btn-outline-light-light"
-                            href="/login"
-                    >
-                        Kijelentkezés
-                    </a>
+                    <div><%= user_id %></div>
+                    <% if (typeof user_id !== 'undefined'){ %>
+                        <a class="btn btn-outline-light-light" href="/logout">
+                            Kijelentkezés
+                        </a>
+                    <% } else if (typeof user_id === 'undefined'){ %>
+                        <a class="btn btn-outline-light-light" href="/login">
+                            Bejelentkezés
+                        </a>
+                    <% } %>
+
                 </div>
             </div>
         </div>

@@ -5,7 +5,7 @@
         <h1>Esemény létrehozása</h1>
     </div>
     <div class="row col-12 shadow p-5 mb-5 mt-5 bg-body rounded">
-        <form>
+        <form method="post">
             <div class="mb-3 p-2">
                 <div class="form-floating">
                     <input
@@ -29,8 +29,8 @@
                 </div>
             </div>
             <div class="mb-3 p-2">
-                <label for="date">Choose a date</label>
-                <duet-date-picker identifier="date"></duet-date-picker>
+                <label for="date">Válassz dátumot</label>
+                <input type="date" id="date"/>
             </div>
             <div class="mb-3 p-2">
                 <div class="input-group">
