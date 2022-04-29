@@ -37,22 +37,22 @@
                         <a class="nav-link" href="/blog">Blog</a>
                     </li>
                     <% if (typeof user_id !== 'undefined'){ %>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/profile">Profilom</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/profile">Profilom</a>
+                        </li>
                     <% } %>
-                    <% if (authority === "Admin"){ %>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            Admin
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/newevent">Esemény létrehozása</a></li>
-                            <li><a class="dropdown-item" href="#">Blogposzt létrehozása</a></li>
-                            <li><a class="dropdown-item" href="/users">Felhasználók szerkesztése</a></li>
-                        </ul>
-                    </li>
+                    <% if (typeof authority !== "undefined" && authority === "Admin"){ %>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                Admin
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/newevent">Esemény létrehozása</a></li>
+                                <li><a class="dropdown-item" href="#">Blogposzt létrehozása</a></li>
+                                <li><a class="dropdown-item" href="/users">Felhasználók szerkesztése</a></li>
+                            </ul>
+                        </li>
                     <% } %>
                 </ul>
                 <div class="d-flex">

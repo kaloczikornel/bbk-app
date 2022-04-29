@@ -1,7 +1,20 @@
-const requireOption = require('../requireOption');
+const requireOption = require("../requireOption");
 
 module.exports = function (objectrepository) {
-    return function (req, res, next) {
-        next();
+    const EventModel = requireOption(objectrepository, "EventModel");
+    return (req, res, next) => {
+        EventModel.findOne(
+            {
+                _id: req.params.eventid,
+            },
+            (err, e) => {
+                if (err) {
+                    next(err);
+                }
+                res.locals.theEvent = e;
+                console.log(res.locals.theEvent);
+            }
+        );
+        return next();
     };
 };

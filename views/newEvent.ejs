@@ -12,6 +12,7 @@
                             type="text"
                             class="form-control"
                             id="name"
+                            name="name"
                             placeholder="Esemény címe"
                     />
                     <label for="name">Esemény címe</label>
@@ -22,15 +23,16 @@
                     <input
                             type="text"
                             class="form-control"
-                            id="fullName"
+                            id="place"
+                            name="place"
                             placeholder="Helyszín"
                     />
-                    <label for="fullName">Helyszín</label>
+                    <label for="place">Helyszín</label>
                 </div>
             </div>
             <div class="mb-3 p-2">
                 <label for="date">Válassz dátumot</label>
-                <input type="date" id="date"/>
+                <input type="date" id="date" name="date"/>
             </div>
             <div class="mb-3 p-2">
                 <div class="input-group">
@@ -38,11 +40,12 @@
                     <textarea
                             class="form-control"
                             aria-label="With textarea"
+                            name="description"
                     ></textarea>
                 </div>
             </div>
             <div class="mb-3 p-2">
-                <a type="submit" class="btn btn-primary" href="/events">Létrehozás</a>
+                <input type="submit" class="btn btn-primary" value="Létrehozás">
                 <a class="btn btn-danger" href="/">Mégse</a>
             </div>
         </form>
