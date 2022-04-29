@@ -8,7 +8,8 @@ const User = db.model('User', {
     idCardNumber: String,
     livingType: String,
     hasCard: Boolean,
-    password: String
+    password: String,
+    authority: String
 });
 
 module.exports = User;
