@@ -36,31 +36,31 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/blog">Blog</a>
                     </li>
-                    <% if (typeof user_id !== 'undefined'){ %>
+                    <% if (typeof user !== 'undefined'){ %>
                         <li class="nav-item">
                             <a class="nav-link" href="/profile">Profilom</a>
                         </li>
-                    <% } %>
-                    <% if (typeof authority !== "undefined" && authority === "Admin"){ %>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                Admin
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/newevent">Esemény létrehozása</a></li>
-                                <li><a class="dropdown-item" href="#">Blogposzt létrehozása</a></li>
-                                <li><a class="dropdown-item" href="/users">Felhasználók szerkesztése</a></li>
-                            </ul>
-                        </li>
+                        <% if (typeof user.authority !== "undefined" && user.authority === "Admin"){ %>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    Admin
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="/newevent">Esemény létrehozása</a></li>
+                                    <li><a class="dropdown-item" href="#">Blogposzt létrehozása</a></li>
+                                    <li><a class="dropdown-item" href="/users">Felhasználók szerkesztése</a></li>
+                                </ul>
+                            </li>
+                        <% } %>
                     <% } %>
                 </ul>
                 <div class="d-flex">
-                    <% if (typeof user_id !== 'undefined'){ %>
+                    <% if (typeof user !== 'undefined'){ %>
                         <a class="btn btn-outline-light-light" href="/logout">
                             Kijelentkezés
                         </a>
-                    <% } else if (typeof user_id === 'undefined'){ %>
+                    <% } else if (typeof user === 'undefined'){ %>
                         <a class="btn btn-outline-light-light" href="/login">
                             Bejelentkezés
                         </a>

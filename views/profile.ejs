@@ -7,54 +7,61 @@
     <div class="row">
         <div class="col-xl-6 col-md-12 shadow p-5 mb-5 bg-body rounded">
             <h4>Jelentkezéseim</h4>
-            <div class="mt-5">
-                <div
-                        class="card mb-3"
-                        style="max-width: 400px; margin-left: auto; margin-right: auto"
-                >
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">
-                            This is a wider card with supporting text below as a natural
-                            lead-in to additional content. This content is a little bit
-                            longer.
-                        </p>
-                        <a href="#" class="btn btn-danger">Lejelentkezés</a>
+            <% events.forEach(event => { %>
+                <div class="mt-5">
+                    <div
+                            class="card mb-3"
+                            style="max-width: 600px; margin-left: auto; margin-right: auto"
+                    >
+                        <div class="card-body">
+                            <h5 class="card-title"><%= event.name %></h5>
+                            <p class="card-text">
+                                <%= event.description %>
+                            </p>
+                            <p class="card-footer">
+                                Helyszín: <%= event.place %>
+                                Dátum: <%= `${event.date.getFullYear()}-${event.date.getMonth() + 1}-${event.date.getDate()}` %>
+                            </p>
+                            <a href="/delapplicant/<%= event._id %>" class="btn btn-danger">Lejelentkezés</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <% } ) %>
         </div>
         <div class="col-xl-6 col-md-12 shadow p-5 mb-5 bg-body rounded">
-            <form method="post">
+            <form method="post" autocomplete="nope">
                 <div class="mb-3 p-2">
                     <div class="form-floating">
                         <input
-                                type="text"
+                                type="chrome"
+                                class="form-control"
+                                id="username"
+                                name="username"
+                                value="<%= user.username %>"
+                        />
+                        <label for="username">Felhasználónév</label>
+                    </div>
+                </div>
+                <div class="mb-3 p-2">
+                    <div class="form-floating">
+                        <input
+                                type="chrome"
                                 class="form-control"
                                 id="name"
-                                placeholder="Felhasználónév"
+                                name="name"
+                                value="<%= user.name %>"
                         />
-                        <label for="name">Felhasználónév</label>
+                        <label for="name">Teljes név</label>
                     </div>
                 </div>
                 <div class="mb-3 p-2">
                     <div class="form-floating">
                         <input
-                                type="text"
-                                class="form-control"
-                                id="fullName"
-                                placeholder="Teljes név"
-                        />
-                        <label for="fullName">Teljes név</label>
-                    </div>
-                </div>
-                <div class="mb-3 p-2">
-                    <div class="form-floating">
-                        <input
-                                type="email"
+                                type="chrome"
                                 class="form-control"
                                 id="email"
-                                placeholder="E-mail cím"
+                                name="email"
+                                value="<%= user.email %>"
                         />
                         <label for="email">E-mail</label>
                     </div>
@@ -62,10 +69,11 @@
                 <div class="mb-3 p-2">
                     <div class="form-floating">
                         <input
-                                type="text"
+                                type="chrome"
                                 class="form-control"
                                 id="IDCard"
-                                placeholder="Felhasználónév"
+                                name="idCardNumber"
+                                value="<%= user.idCardNumber %>"
                         />
                         <label for="IDCard">Személyi igazolvány szám</label>
                     </div>
@@ -76,11 +84,22 @@
                         <label class="input-group-text" for="inputGroupSelect"
                         >Mi vagy</label
                         >
-                        <select class="form-select" id="inputGroupSelect">
-                            <option selected>Válassz...</option>
-                            <option value="1">Kolis</option>
-                            <option value="2">VIK-es</option>
-                            <option value="3">Külsős</option>
+                        <select class="form-select" id="inputGroupSelect" name="livingType">
+                            <% if (user.livingType === "sch") { %>
+                                <option selected value="sch">Kolis</option>
+                                <option value="vik">VIK-es</option>
+                                <option value="out">Külsős</option>
+                            <% } %>
+                            <% if (user.livingType === "vik") { %>
+                                <option selected value="vik">VIK-es</option>
+                                <option value="sch">Kolis</option>
+                                <option value="out">Külsős</option>
+                            <% } %>
+                            <% if (user.livingType === "out") { %>
+                                <option selected value="out">Külsős</option>
+                                <option value="sch">Kolis</option>
+                                <option value="vik">VIK-es</option>
+                            <% } %>
                         </select>
                     </div>
                 </div>
@@ -91,6 +110,10 @@
                                 type="checkbox"
                                 value=""
                                 id="hostelCard"
+                                name="hostelCard"
+                        <% if (user.hasCard) { %>
+                                checked
+                                <% } %>
                         />
                         <label class="form-check-label" for="hostelCard">
                             Van kollégiumi kártyád?
@@ -103,10 +126,12 @@
                         <input
                                 type="password"
                                 class="form-control"
-                                id="password"
+                                id="new-password"
+                                name="password"
                                 placeholder="Jelszó"
+                                autocomplete="nope"
                         />
-                        <label for="password">Jelszó</label>
+                        <label for="new-password">Jelszó</label>
                     </div>
                 </div>
                 <div class="mb-3 p-2">
@@ -114,16 +139,16 @@
                         <input
                                 type="password"
                                 class="form-control"
-                                id="password2"
+                                id="new-password2"
+                                name="password2"
                                 placeholder="Jelszó még egyszer"
+                                autocomplete="nope"
                         />
-                        <label for="password2">Jelszó még egyszer</label>
+                        <label for="new-password2">Jelszó még egyszer</label>
                     </div>
                 </div>
                 <div class="mb-3 p-2">
-                    <button type="submit" class="btn btn-primary">
-                        Adatok szerkesztése
-                    </button>
+                    <input type="submit" class="btn btn-primary" value="Adatok szerkesztése">
                 </div>
             </form>
         </div>

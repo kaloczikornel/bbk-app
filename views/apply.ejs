@@ -10,26 +10,15 @@
                     class="card mb-3"
                     style="max-width: 600px; margin-left: auto; margin-right: auto"
             >
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img
-                                src="https://via.placeholder.com/600"
-                                class="img-fluid rounded-start"
-                                alt="..."
-                        />
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title"><%= theEvent.name %></h5>
-                            <p class="card-text">
-                                <%= theEvent.description %>
-                            </p>
-                            <p class="card-footer">
-                                Helyszín: <%= theEvent.place %>
-                                Dátum: <%= `${theEvent.date.getFullYear()}-${theEvent.date.getMonth() + 1}-${theEvent.date.getDate()}` %>
-                            </p>
-                        </div>
-                    </div>
+                <div class="card-body">
+                    <h5 class="card-title"><%= theEvent.name %></h5>
+                    <p class="card-text">
+                        <%= theEvent.description %>
+                    </p>
+                    <p class="card-footer">
+                        Helyszín: <%= theEvent.place %>
+                        Dátum: <%= `${theEvent.date.getFullYear()}-${theEvent.date.getMonth() + 1}-${theEvent.date.getDate()}` %>
+                    </p>
                 </div>
             </div>
         </div>
@@ -42,11 +31,11 @@
                                     type="text"
                                     class="form-control"
                                     id="fullName"
-                                    placeholder="<%= name %>"
+                                    placeholder="<%= user.name %>"
                                     disabled
 
                             />
-                            <label for="fullName"><%= name %></label>
+                            <label for="fullName"><%= user.name %></label>
                         </div>
                     </div>
                     <div class="mb-3 p-2">
@@ -55,10 +44,10 @@
                                     type="text"
                                     class="form-control"
                                     id="IDCard"
-                                    placeholder="<%= idCardNumber %>"
+                                    placeholder="<%= user.idCardNumber %>"
                                     disabled
                             />
-                            <label for="IDCard"><%= idCardNumber %></label>
+                            <label for="IDCard"><%= user.idCardNumber %></label>
                         </div>
                     </div>
                     <div class="mb-3 p-2">
@@ -67,16 +56,15 @@
                             >Mi vagy</label
                             >
                             <select class="form-select" id="inputGroupSelect" disabled>
-                                <% if (livingType === "sch") { %>
+                                <% if (user.livingType === "sch") { %>
                                     <option selected value="1">Kolis</option>
                                 <% } %>
-                                <% if (livingType === "vik") { %>
+                                <% if (user.livingType === "vik") { %>
                                     <option selected value="2">VIK-es</option>
                                 <% } %>
-                                <% if (livingType === "out") { %>
+                                <% if (user.livingType === "out") { %>
                                     <option selected value="3">Külsős</option>
                                 <% } %>
-
                             </select>
                         </div>
                     </div>
@@ -88,7 +76,7 @@
                                     value=""
                                     id="hostelCard"
                                     disabled
-                            <% if (hasCard) { %>
+                            <% if (user.hasCard) { %>
                                     checked
                                     <% } %>
                             />
@@ -98,7 +86,8 @@
                         </div>
                     </div>
                     <div class="mb-3 p-2">
-                        <a type="submit" class="btn btn-primary">Jelentkezés</a>
+                        <input type="hidden" value="<%= theEvent._id %>" name="event_id" />
+                        <input type="submit" class="btn btn-primary" value="Jelentkezés">
                         <a class="btn btn-danger" href="/events">Mégse</a>
                     </div>
                 </form>
