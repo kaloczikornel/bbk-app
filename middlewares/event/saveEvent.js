@@ -20,8 +20,7 @@ module.exports = function (objectrepository) {
         res.locals.event.description = req.body.description;
         res.locals.event._organizer = res.locals.user_id;
 
-        console.log(res.locals.event);
-        res.locals.event.save((err) => {
+        res.locals.event.save(err => {
             if (err) {
                 return next(err);
             }

@@ -20,7 +20,11 @@ module.exports = function (objectrepository) {
             res.locals.error = "Passwords are different!";
             return next();
         }
-        res.locals.user = new UserModel();
+        let justEdit = true;
+        if (typeof res.locals.user === "undefined") {
+            res.locals.user = new UserModel();
+            justEdit = false;
+        }
 
         res.locals.user.username = req.body.username;
         res.locals.user.name = req.body.name;
@@ -34,6 +38,9 @@ module.exports = function (objectrepository) {
         res.locals.user.save((err) => {
             if (err) {
                 return next(err);
+            }
+            if (justEdit) {
+                return next();
             }
             return res.redirect(`/login`);
         });

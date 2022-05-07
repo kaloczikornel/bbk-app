@@ -3,15 +3,15 @@ const requireOption = require("../requireOption");
 module.exports = function (objectrepository) {
     const EventModel = requireOption(objectrepository, "EventModel");
     return (req, res, next) => {
-        EventModel.findOne(
+        EventModel.find(
             {
-                _id: req.params.eventid,
+                _id: {$in: res.locals.applies_ids}
             },
-            (err, e) => {
+            (err, events) => {
                 if (err) {
                     next(err);
                 }
-                res.locals.theEvent = e;
+                res.locals.events = events;
                 return next();
             }
         );

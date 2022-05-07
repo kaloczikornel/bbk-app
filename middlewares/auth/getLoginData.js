@@ -10,12 +10,18 @@ module.exports = function (objectrepository) {
                 if (err) {
                     return next(err);
                 }
-                res.locals.user_id = user._id;
-                res.locals.authority = user.authority;
-                res.locals.name = user.name;
-                res.locals.idCardNumber = user.idCardNumber;
-                res.locals.livingType = user.livingType;
-                res.locals.hasCard = user.hasCard;
+                res.locals.user = user
+                /*
+                res.locals.user.user_id = user._id;
+                res.locals.user.authority = user.authority;
+                res.locals.user.name = user.name;
+                res.locals.user.username = user.username;
+                res.locals.user.email = user.email
+                res.locals.user.idCardNumber = user.idCardNumber;
+                res.locals.user.livingType = user.livingType;
+                res.locals.user.hasCard = user.hasCard;
+
+                 */
                 return next();
             });
         }
