@@ -9,6 +9,7 @@ const getLoginData = require("../middlewares/auth/getLoginData");
 
 const getEvents = require("../middlewares/event/getEvents");
 const getEventByID = require("../middlewares/event/getEventByID");
+const getEventsByIds = require("../middlewares/event/getEventsByIds");
 const saveEvent = require("../middlewares/event/saveEvent");
 const delEvent = require("../middlewares/event/delEvent");
 
@@ -16,7 +17,6 @@ const getBlogposts = require("../middlewares/blog/getBlogposts");
 const savePost = require("../middlewares/blog/savePost");
 const delPost = require("../middlewares/blog/delPost");
 
-const getUserInfo = require("../middlewares/user/getUserInfo");
 const getUsers = require("../middlewares/user/getUsers");
 const saveUser = require("../middlewares/user/saveUser");
 
@@ -24,6 +24,9 @@ const saveApplicant = require("../middlewares/applicant/saveApplicant");
 const getApplicants = require("../middlewares/applicant/getApplicants");
 const delApplicants = require("../middlewares/applicant/delApplicants");
 const getUserApplies = require("../middlewares/applicant/getUserApplies");
+const delApplicant = require("../middlewares/applicant/delApplicant");
+const getApplicant = require("../middlewares/applicant/getApplicant");
+const checkIfAlreadyApplied = require("../middlewares/applicant/checkIfAlreadyApplied");
 
 const render = require("../middlewares/render");
 
@@ -62,13 +65,21 @@ module.exports = function (app) {
   );
   app.get("/logout", auth(objRepo), logout(objRepo));
 
-  app.use(
+  app.get(
     "/event/:eventid/apply",
     auth(objRepo),
     getLoginData(objRepo),
     getEventByID(objRepo),
-    saveApplicant(objRepo),
+    checkIfAlreadyApplied(objRepo),
     render(objRepo, "apply")
+  );
+  app.post(
+    "/event/:eventid/apply",
+    auth(objRepo),
+    getLoginData(objRepo),
+    getEventByID(objRepo),
+    checkIfAlreadyApplied(objRepo),
+    saveApplicant(objRepo)
   );
   app.get(
     "/events",
@@ -96,10 +107,18 @@ module.exports = function (app) {
     "/delevent/:eventid",
     auth(objRepo),
     getLoginData(objRepo),
-    getEvents(objRepo),
+    getEventByID(objRepo),
     getApplicants(objRepo),
     delApplicants(objRepo),
     delEvent(objRepo)
+  );
+  app.get(
+    "/delapplicant/:eventid",
+    auth(objRepo),
+    getLoginData(objRepo),
+    getEventByID(objRepo),
+    getApplicant(objRepo),
+    delApplicant(objRepo)
   );
 
   app.get(
@@ -127,10 +146,9 @@ module.exports = function (app) {
     "/profile",
     auth(objRepo),
     getLoginData(objRepo),
-    getUserInfo(objRepo),
     getUserApplies(objRepo),
+    getEventsByIds(objRepo),
     saveUser(objRepo),
-    saveApplicant(objRepo),
     render(objRepo, "profile")
   );
   app.use(
