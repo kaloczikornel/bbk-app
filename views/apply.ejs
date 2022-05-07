@@ -20,9 +20,13 @@
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title"><%=theEvent.name%></h5>
+                            <h5 class="card-title"><%= theEvent.name %></h5>
                             <p class="card-text">
                                 <%= theEvent.description %>
+                            </p>
+                            <p class="card-footer">
+                                Helyszín: <%= theEvent.place %>
+                                Dátum: <%= `${theEvent.date.getFullYear()}-${theEvent.date.getMonth() + 1}-${theEvent.date.getDate()}` %>
                             </p>
                         </div>
                     </div>
@@ -38,9 +42,11 @@
                                     type="text"
                                     class="form-control"
                                     id="fullName"
-                                    placeholder="Teljes név"
+                                    placeholder="<%= name %>"
+                                    disabled
+
                             />
-                            <label for="fullName">Teljes név</label>
+                            <label for="fullName"><%= name %></label>
                         </div>
                     </div>
                     <div class="mb-3 p-2">
@@ -49,9 +55,10 @@
                                     type="text"
                                     class="form-control"
                                     id="IDCard"
-                                    placeholder="Felhasználónév"
+                                    placeholder="<%= idCardNumber %>"
+                                    disabled
                             />
-                            <label for="IDCard">Személyi igazolvány szám</label>
+                            <label for="IDCard"><%= idCardNumber %></label>
                         </div>
                     </div>
                     <div class="mb-3 p-2">
@@ -59,11 +66,17 @@
                             <label class="input-group-text" for="inputGroupSelect"
                             >Mi vagy</label
                             >
-                            <select class="form-select" id="inputGroupSelect">
-                                <option selected>Válassz...</option>
-                                <option value="1">Kolis</option>
-                                <option value="2">VIK-es</option>
-                                <option value="3">Külsős</option>
+                            <select class="form-select" id="inputGroupSelect" disabled>
+                                <% if (livingType === "sch") { %>
+                                    <option selected value="1">Kolis</option>
+                                <% } %>
+                                <% if (livingType === "vik") { %>
+                                    <option selected value="2">VIK-es</option>
+                                <% } %>
+                                <% if (livingType === "out") { %>
+                                    <option selected value="3">Külsős</option>
+                                <% } %>
+
                             </select>
                         </div>
                     </div>
@@ -74,6 +87,10 @@
                                     type="checkbox"
                                     value=""
                                     id="hostelCard"
+                                    disabled
+                            <% if (hasCard) { %>
+                                    checked
+                                    <% } %>
                             />
                             <label class="form-check-label" for="hostelCard">
                                 Van kollégiumi kártyád?
@@ -81,9 +98,7 @@
                         </div>
                     </div>
                     <div class="mb-3 p-2">
-                        <a type="submit" class="btn btn-primary" href="/profile">
-                            Jelentkezés
-                        </a>
+                        <a type="submit" class="btn btn-primary">Jelentkezés</a>
                         <a class="btn btn-danger" href="/events">Mégse</a>
                     </div>
                 </form>

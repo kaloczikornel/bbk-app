@@ -12,6 +12,10 @@ module.exports = function (objectrepository) {
                 }
                 res.locals.user_id = user._id;
                 res.locals.authority = user.authority;
+                res.locals.name = user.name;
+                res.locals.idCardNumber = user.idCardNumber;
+                res.locals.livingType = user.livingType;
+                res.locals.hasCard = user.hasCard;
                 return next();
             });
         }

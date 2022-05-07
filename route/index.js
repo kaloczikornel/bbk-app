@@ -66,7 +66,6 @@ module.exports = function (app) {
     "/event/:eventid/apply",
     auth(objRepo),
     getLoginData(objRepo),
-    getLoginData(objRepo),
     getEventByID(objRepo),
     saveApplicant(objRepo),
     render(objRepo, "apply")

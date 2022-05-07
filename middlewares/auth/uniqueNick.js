@@ -8,7 +8,7 @@ module.exports = function (objectrepository) {
             return next();
         }
         return UserModel.findOne({
-            email: req.body.username
+            username: req.body.username
         }, (err, user) => {
             if (err) {
                 return next(err);

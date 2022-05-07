@@ -4,6 +4,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const session = require("express-session");
 
+app.use(express.static('static'));
+
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
@@ -20,8 +22,6 @@ app.use((err,req,res,next)=>{
     res.end('Ajajj, baj van :(');
 });
  */
-
-//app.use(express.static('static'));
 
 // Load routing
 require('./route/index')(app);

@@ -12,9 +12,9 @@ module.exports = function (objectrepository) {
                     next(err);
                 }
                 res.locals.theEvent = e;
-                console.log(res.locals.theEvent);
+                //console.log(res.locals.theEvent);
+                return next();
             }
         );
-        return next();
     };
 };
