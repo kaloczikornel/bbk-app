@@ -1,3 +1,10 @@
+/**
+ * Check if the user have applied for the event before
+ * The ID of the user is on res.locals.user._id
+ * Redirect to /profile if already applied
+ * Call next there was no problem
+ */
+
 const requireOption = require("../requireOption");
 
 module.exports = function (objectrepository) {
@@ -14,6 +21,7 @@ module.exports = function (objectrepository) {
                 if (apply.length !== 0) {
                     return res.redirect("/profile");
                 }
+                return next();
             }
         );
     };

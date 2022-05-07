@@ -1,3 +1,9 @@
+/**
+ * Find all the event_ids what the user had applied
+ * Put the IDs on res.locals.applies_ids
+ * call next if no problem
+ */
+
 const requireOption = require("../requireOption");
 
 module.exports = function (objectrepository) {
