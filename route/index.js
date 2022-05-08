@@ -19,6 +19,7 @@ const delPost = require("../middlewares/blog/delPost");
 
 const getUsers = require("../middlewares/user/getUsers");
 const saveUser = require("../middlewares/user/saveUser");
+const getUsersByIds = require("../middlewares/user/getUsersByIds");
 
 const saveApplicant = require("../middlewares/applicant/saveApplicant");
 const getApplicants = require("../middlewares/applicant/getApplicants");
@@ -34,6 +35,7 @@ const UserModel = require("../models/user");
 const BlogModel = require("../models/blog");
 const EventModel = require("../models/event");
 const ApplicantModel = require("../models/applicant");
+const {request} = require("express");
 
 module.exports = function (app) {
   const objRepo = {
@@ -93,6 +95,7 @@ module.exports = function (app) {
     getLoginData(objRepo),
     getEventByID(objRepo),
     getApplicants(objRepo),
+    getUsersByIds(objRepo),
     saveApplicant(objRepo),
     render(objRepo, "applicants")
   );

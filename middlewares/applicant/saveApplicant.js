@@ -12,7 +12,7 @@ module.exports = function (objectrepository) {
         res.locals.applicant.paid = false;
         res.locals.applicant.came = false;
         res.locals.applicant._event = req.body.event_id;
-        res.locals.applicant._user = res.locals.user_id;
+        res.locals.applicant._user = res.locals.user._id;
 
         res.locals.applicant.save(err => {
             if (err){

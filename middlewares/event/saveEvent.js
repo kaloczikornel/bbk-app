@@ -18,7 +18,7 @@ module.exports = function (objectrepository) {
         res.locals.event.place = req.body.place;
         res.locals.event.date = req.body.date;
         res.locals.event.description = req.body.description;
-        res.locals.event._organizer = res.locals.user_id;
+        res.locals.event._organizer = res.locals.user._id;
 
         res.locals.event.save(err => {
             if (err) {

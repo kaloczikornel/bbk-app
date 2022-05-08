@@ -6,7 +6,6 @@ module.exports = function (objectrepository) {
             if (typeof err !== "undefined") {
                 return next();
             }
-            res.locals.user_id = undefined;
             return res.redirect("/");
         });
     };

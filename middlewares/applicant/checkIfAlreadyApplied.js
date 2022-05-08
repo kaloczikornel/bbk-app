@@ -12,13 +12,15 @@ module.exports = function (objectrepository) {
     return (req, res, next) => {
         ApplicantModel.findOne(
             {
-                _user: res.locals.user_id,
+                _user: res.locals.user._id,
+                _event: res.locals.theEvent._id
             },
             (err, apply) => {
                 if (err) {
                     return next(err);
                 }
-                if (apply.length !== 0) {
+                console.log(apply, "checkIfAlreadyAppliedMW");
+                if (apply !== null) {
                     return res.redirect("/profile");
                 }
                 return next();

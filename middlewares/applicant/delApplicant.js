@@ -1,14 +1,22 @@
 /**
- * Deletes a user from an event.
- * User params are on res.locals.user
- * Event ID is on res.params.eventid
+ * Deletes an applicant from an event.
+ * Applicant is on res.locals.applicant
  * Call next() if there is no problem
  */
 
 const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
-    return function (req, res, next) {
-        next();
+    return (req, res, next) => {
+        if (typeof res.locals.applicant === "undefined"){
+            return next();
+        }
+
+        res.locals.applicant.remove(err => {
+            if (err) {
+                return next(err);
+            }
+            return res.redirect(`back`);
+        });
     };
 };

@@ -18,66 +18,29 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Mark</td>
-                    <td>Kolis</td>
-                    <td>Igen</td>
-                    <td>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value=""/>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value=""/>
-                        </div>
-                    </td>
-                    <td style="width: 30px; white-space: nowrap">
-                        <a href="#" class="btn btn-sm btn-danger">
-                            <i class="fa-solid fa-xmark"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Jacob</td>
-                    <td>Kolis</td>
-                    <td>Nem</td>
-                    <td>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value=""/>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value=""/>
-                        </div>
-                    </td>
-                    <td style="width: 30px; white-space: nowrap">
-                        <a href="#" class="btn btn-sm btn-danger">
-                            <i class="fa-solid fa-xmark"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Béla</td>
-                    <td>Kolis</td>
-                    <td>Igen</td>
-                    <td>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value=""/>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value=""/>
-                        </div>
-                    </td>
-                    <td style="width: 30px; white-space: nowrap">
-                        <a href="#" class="btn btn-sm btn-danger">
-                            <i class="fa-solid fa-xmark"></i>
-                        </a>
-                    </td>
-                </tr>
+                <% applicants.forEach(user =>{ %>
+                    <tr>
+                        <td><%= user.name %></td>
+                        <td><%= user.livingType %></td>
+                        <td><%= user.hasCard %></td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value=""/>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value=""/>
+                            </div>
+                        </td>
+                        <td style="width: 30px; white-space: nowrap">
+                            <a href="#" class="btn btn-sm btn-danger">
+                                <i class="fa-solid fa-xmark"></i>
+                            </a>
+                        </td>
+                    </tr>
+
+                <% }); %>
                 </tbody>
             </table>
             <button class="btn btn-primary">Export to .CSV</button>

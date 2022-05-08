@@ -1,13 +1,26 @@
 /**
  * Put the applicant on res.locals.applicant
- * The userid and eventid are on a hidden field called user_id and event_id
+ * The user is on res.locals.user and the event is on res.locals.theEvent
  * Calls next() if no problem
  */
 
-const requireOption = require('../requireOption');
+const requireOption = require("../requireOption");
 
 module.exports = function (objectrepository) {
-    return function (req, res, next) {
-        next();
+    const ApplicantModel = requireOption(objectrepository, "ApplicantModel");
+    return (req, res, next) => {
+        ApplicantModel.findOne(
+            {
+                _user: res.locals.user._id,
+                _event: res.locals.theEvent._id,
+            },
+            (err, user) => {
+                if (err) {
+                    return next(err);
+                }
+                res.locals.applicant = user;
+                return next();
+            }
+        );
     };
 };

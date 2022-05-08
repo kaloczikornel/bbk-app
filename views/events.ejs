@@ -30,8 +30,9 @@
                                     Dátum: <%= `${event.date.getFullYear()}-${event.date.getMonth() + 1}-${event.date.getDate()}` %>
                                 </p>
                                 <a href="/event/<%= event._id %>/apply" class="btn btn-primary">Jelentkezés</a>
-                                <% if (typeof authority !== "undefined" && authority === "Admin"){ %>
+                                <% if (typeof user !== "undefined" && user.authority === "Admin"){ %>
                                     <a href="/event/<%= event._id %>/applicants" class="btn btn-info">Megtekintés</a>
+                                    <a href="/delevent/<%= event._id %>" class="btn btn-danger">Törlés</a>
                                 <% } %>
                             </div>
                         </div>
