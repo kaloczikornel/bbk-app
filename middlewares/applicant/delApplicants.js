@@ -7,7 +7,15 @@
 const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
-    return function (req, res, next) {
-        next();
+    const ApplicantModel = requireOption(objectrepository,"ApplicantModel")
+    return (req, res, next) => {
+        ApplicantModel.remove({
+            _user: {$in: res.locals.applicants.map((e) => e._user)}
+        },err =>{
+            if (err){
+                return next(err);
+            }
+            return next();
+        });
     };
 };

@@ -5,13 +5,13 @@ module.exports = function (objectrepository) {
     return (req, res, next) => {
         UserModel.find(
             {
-                _id: {$in: res.locals.applicants_ids}
+                _id: {$in: res.locals.applicants.map((e) => e._user)}
             },
             (err, users) => {
                 if (err) {
                     return next(err);
                 }
-                res.locals.applicants = users;
+                res.locals.users = users;
                 return next();
             }
         );

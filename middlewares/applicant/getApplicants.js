@@ -1,5 +1,5 @@
 /**
- * Put all the applicants' id for an event on res.locals.applicants_ids
+ * Put all the applicants for an event on res.locals.applicants
  * eventid comes on res.params
  * call next() if no problem
  */
@@ -17,7 +17,7 @@ module.exports = function (objectrepository) {
                 if (err) {
                     return next(err);
                 }
-                res.locals.applicants_ids = applicants.map((e) => e._user);
+                res.locals.applicants = applicants;
                 return next();
             }
         );
