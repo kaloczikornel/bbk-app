@@ -16,36 +16,19 @@
                 </tr>
                 </thead>
                 <tbody>
+                <% users.forEach(user => { %>
+                    <tr>
+                        <td><%= user.name %></td>
+                        <td><%= user.username %></td>
+                        <td><%= user.authority %></td>
+                        <td style="width: 30px; white-space: nowrap">
+                            <a href="#" class="btn btn-sm btn-primary">
+                                <i class="fa-solid fa-user-pen"></i>
+                            </a>
+                        </td>
+                    </tr>
                 <tr>
-                    <td>Mark</td>
-                    <td>markvagyoklol</td>
-                    <td>tag</td>
-                    <td style="width: 30px; white-space: nowrap">
-                        <a href="#" class="btn btn-sm btn-primary">
-                            <i class="fa-solid fa-user-pen"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Jacob</td>
-                    <td>jacobbaaaa</td>
-                    <td>felhasználó</td>
-                    <td style="width: 30px; white-space: nowrap">
-                        <a href="#" class="btn btn-sm btn-primary">
-                            <i class="fa-solid fa-user-pen"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Béla</td>
-                    <td>belaaavok</td>
-                    <td>felhasználó</td>
-                    <td style="width: 30px; white-space: nowrap">
-                        <a href="#" class="btn btn-sm btn-primary">
-                            <i class="fa-solid fa-user-pen"></i>
-                        </a>
-                    </td>
-                </tr>
+                    <% }) %>
                 </tbody>
             </table>
         </div>
