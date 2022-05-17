@@ -35,7 +35,6 @@ const UserModel = require("../models/user");
 const BlogModel = require("../models/blog");
 const EventModel = require("../models/event");
 const ApplicantModel = require("../models/applicant");
-const {request} = require("express");
 
 module.exports = function (app) {
   const objRepo = {

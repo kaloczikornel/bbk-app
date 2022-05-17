@@ -11,17 +11,6 @@ module.exports = function (objectrepository) {
                     return next(err);
                 }
                 res.locals.user = user
-                /*
-                res.locals.user.user_id = user._id;
-                res.locals.user.authority = user.authority;
-                res.locals.user.name = user.name;
-                res.locals.user.username = user.username;
-                res.locals.user.email = user.email
-                res.locals.user.idCardNumber = user.idCardNumber;
-                res.locals.user.livingType = user.livingType;
-                res.locals.user.hasCard = user.hasCard;
-
-                 */
                 return next();
             });
         }

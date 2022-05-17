@@ -26,6 +26,6 @@ app.use((err,req,res,next)=>{
 // Load routing
 require('./route/index')(app);
 
-const server = app.listen(1000, function () {
-    console.log("On: 1000");
+const server = app.listen(3000, function () {
+    console.log("On: 3000");
 });
