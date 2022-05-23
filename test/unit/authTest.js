@@ -7,7 +7,7 @@ chai.use(spies);
 const authMW = require("../../middlewares/auth/auth");
 
 describe("authMW test", () => {
-    it("should can next() if the user is logged in", () => {
+    it("should call next() if the user is logged in", () => {
         const next = chai.spy();
         const req = {
             session: {

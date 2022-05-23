@@ -1,0 +1,27 @@
+config:
+  plugins:
+    fuzzer: {}
+  target: http://localhost:3000
+  phases:
+    - duration: 60
+      arrivalRate: 5
+      name: Warm up
+    - duration: 120
+      arrivalRate: 5
+      rampTo: 50
+      name: Ramp up load
+
+scenarios:
+  - name: "Register on the page"
+    flow:
+      - post:
+          url: "/reg"
+          json:
+            username: "{{ naughtyString }}"
+            name: "{{ naughtyString }}"
+            email: "{{ naughtyString }}"
+            idCardNumber: "testCard"
+            livingType: "home"
+            password2: "secret"
+            password: "secret"
+
