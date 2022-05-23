@@ -1,0 +1,25 @@
+config:
+  target: http://localhost:3000
+  phases:
+    - duration: 60
+      arrivalRate: 5
+      name: Warm up
+    - duration: 120
+      arrivalRate: 5
+      rampTo: 50
+      name: Ramp up load
+    - duration: 600
+      arrivalRate: 50
+      name: Sustained load
+
+scenarios:
+  - name: "Navigate through the page as a visitor"
+    flow:
+      - get:
+          url: "/events"
+      - get:
+          url: "/"
+      - get:
+          url: "/login"
+      - get:
+          url: "/blog"
