@@ -2,7 +2,7 @@ const assert = require('assert');
 const expect = require('chai').expect;
 const chai = require('chai')
 
-const saveEventMW = require("../../middlewares/event/saveEvent");
+const saveEventMW = require("../../../../middlewares/event/saveEvent");
 
 describe("saveEvent test", () => {
     it("should call next if req has undefined properties", (done) => {

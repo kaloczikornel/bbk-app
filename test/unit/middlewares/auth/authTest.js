@@ -4,7 +4,7 @@ const chai = require('chai')
     , spies = require('chai-spies');
 
 chai.use(spies);
-const authMW = require("../../middlewares/auth/auth");
+const authMW = require("../../../../middlewares/auth/auth");
 
 describe("authMW test", () => {
     it("should call next() if the user is logged in", () => {

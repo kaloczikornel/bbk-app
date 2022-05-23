@@ -4,7 +4,7 @@ const chai = require('chai')
     , spies = require('chai-spies');
 
 chai.use(spies);
-const getLoginDataMW = require("../../middlewares/auth/getLoginData");
+const getLoginDataMW = require("../../../../middlewares/auth/getLoginData");
 
 describe("getLoginData test", () => {
     it("should call next() if the user is not logged in", () => {

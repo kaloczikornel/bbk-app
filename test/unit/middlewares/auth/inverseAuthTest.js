@@ -4,7 +4,7 @@ const chai = require('chai')
     , spies = require('chai-spies');
 
 chai.use(spies);
-const inverseAuthMW = require("../../middlewares/auth/inverseAuth");
+const inverseAuthMW = require("../../../../middlewares/auth/inverseAuth");
 
 describe("inverseAuth test", () => {
 	it("should call next() if the user is not logged in", () => {

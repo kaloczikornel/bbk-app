@@ -4,7 +4,7 @@ const chai = require('chai')
     , spies = require('chai-spies');
 
 chai.use(spies);
-const eventMW = require("../../middlewares/event/getEventsByIds");
+const eventMW = require("../../../../middlewares/event/getEventsByIds");
 
 describe("getEventsByIDsMW test", () => {
     it("should call next if event does not exist", (done) => {

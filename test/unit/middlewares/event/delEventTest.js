@@ -4,7 +4,7 @@ const chai = require('chai')
     , spies = require('chai-spies');
 
 chai.use(spies);
-const eventMW = require("../../middlewares/event/delEvent");
+const eventMW = require("../../../../middlewares/event/delEvent");
 
 describe("delEventMW test", () => {
     it("should call next() if the event cannot be deleted", () => {
