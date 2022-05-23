@@ -1,0 +1,5 @@
+This is a list of bugs that have to be fixed
+
+    - user can register with a password ""
+    - user can register without choose the type of living
+    - user can register with an ID card number that is already exist

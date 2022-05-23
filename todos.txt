@@ -1,0 +1,13 @@
+This is a list of things that should be done by the time of deploying
+
+    - encrypt the passwords and the ID card number at least
+    - maybe set a minimum length for the password
+    - need to check ID card number before letting the user register
+    - auto deploy
+    - do the checklist: https://cheatsheetseries.owasp.org/cheatsheets/Nodejs_Security_Cheat_Sheet.html
+
+
+
+Would be nice if these features would be also implemented
+
+    - unit test every middleware
