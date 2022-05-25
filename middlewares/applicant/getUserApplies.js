@@ -17,7 +17,6 @@ module.exports = function (objectrepository) {
                 if (err) {
                     return next(err);
                 }
-                console.log("getUserAppliesMW: ", applies);
                 res.locals.applies_ids = applies.map(e => e._event);
                 return next();
             }

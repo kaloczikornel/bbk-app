@@ -19,7 +19,6 @@ module.exports = function (objectrepository) {
                 if (err) {
                     return next(err);
                 }
-                console.log(apply, "checkIfAlreadyAppliedMW");
                 if (apply !== null) {
                     return res.redirect("/profile");
                 }
