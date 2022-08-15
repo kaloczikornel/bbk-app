@@ -1,14 +1,14 @@
-const requireOption = require("../requireOption");
+const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
-    const EventModel = requireOption(objectrepository, "EventModel");
+    const EventModel = requireOption(objectrepository, 'EventModel');
     return (req, res, next) => {
         if (
-            typeof req.body.name === "undefined" ||
-            typeof req.body.place === "undefined" ||
-            typeof req.body.date === "undefined" ||
-            typeof req.body.description === "undefined" ||
-            typeof res.locals.error !== "undefined"
+            typeof req.body.name === 'undefined' ||
+            typeof req.body.place === 'undefined' ||
+            typeof req.body.date === 'undefined' ||
+            typeof req.body.description === 'undefined' ||
+            typeof res.locals.error !== 'undefined'
         ) {
             return next();
         }
@@ -20,7 +20,7 @@ module.exports = function (objectrepository) {
         res.locals.event.description = req.body.description;
         res.locals.event._organizer = res.locals.user._id;
 
-        res.locals.event.save(err => {
+        res.locals.event.save((err) => {
             if (err) {
                 return next(err);
             }

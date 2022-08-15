@@ -5,22 +5,22 @@
  * Call next there was no problem
  */
 
-const requireOption = require("../requireOption");
+const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
-    const ApplicantModel = requireOption(objectrepository, "ApplicantModel");
+    const ApplicantModel = requireOption(objectrepository, 'ApplicantModel');
     return (req, res, next) => {
         ApplicantModel.findOne(
             {
                 _user: res.locals.user._id,
-                _event: res.locals.theEvent._id
+                _event: res.locals.theEvent._id,
             },
             (err, apply) => {
                 if (err) {
                     return next(err);
                 }
                 if (apply !== null) {
-                    return res.redirect("/profile");
+                    return res.redirect('/profile');
                 }
                 return next();
             }

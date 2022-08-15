@@ -4,10 +4,10 @@
  * call next() if no problem
  */
 
-const requireOption = require("../requireOption");
+const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
-    const ApplicantModel = requireOption(objectrepository, "ApplicantModel");
+    const ApplicantModel = requireOption(objectrepository, 'ApplicantModel');
     return (req, res, next) => {
         ApplicantModel.find(
             {

@@ -8,11 +8,11 @@ const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
     return (req, res, next) => {
-        if (typeof res.locals.applicant === "undefined"){
+        if (typeof res.locals.applicant === 'undefined') {
             return next();
         }
 
-        res.locals.applicant.remove(err => {
+        res.locals.applicant.remove((err) => {
             if (err) {
                 return next(err);
             }

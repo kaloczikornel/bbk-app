@@ -4,10 +4,10 @@
  * call next if no problem
  */
 
-const requireOption = require("../requireOption");
+const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
-    const ApplicantModel = requireOption(objectrepository, "ApplicantModel");
+    const ApplicantModel = requireOption(objectrepository, 'ApplicantModel');
     return (req, res, next) => {
         ApplicantModel.find(
             {
@@ -17,7 +17,7 @@ module.exports = function (objectrepository) {
                 if (err) {
                     return next(err);
                 }
-                res.locals.applies_ids = applies.map(e => e._event);
+                res.locals.applies_ids = applies.map((e) => e._event);
                 return next();
             }
         );

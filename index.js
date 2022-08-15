@@ -1,21 +1,22 @@
-
-const express = require('express');
+const express = require("express");
 const app = express();
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 const session = require("express-session");
 
-app.use(express.static('static'));
+app.use(express.static("static"));
 
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
-app.use(session({
-    secret: 'asfdgaergaregagrasdfwrgwef',
+app.use(
+  session({
+    secret: "asfdgaergaregagrasdfwrgwef",
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false}
-}))
+    cookie: { secure: false },
+  })
+);
 /*
 app.use((err,req,res,next)=>{
     console.log(err);
@@ -24,8 +25,8 @@ app.use((err,req,res,next)=>{
  */
 
 // Load routing
-require('./route/index')(app);
+require("./route/index")(app);
 
-const server = app.listen(3000, function () {
-    console.log("On: 3000");
+const server = app.listen(4000, function () {
+  console.log("On: 4000");
 });
