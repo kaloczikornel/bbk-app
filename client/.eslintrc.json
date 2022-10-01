@@ -1,62 +1,9 @@
 {
-  "extends": ["prettier", "prettier/prettier"],
-  "plugins": ["react-hooks"],
-  "rules": {
-    "no-console": "off",
-    "prettier/prettier": "error",
-    "no-unused-vars": [
-      "error",
-      {
-        "argsIgnorePattern": "[next|req|res|objectrepository]"
-      }
+    "extends": [
+        "../.eslintrc.json"
     ],
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": [
-          "client/**/*.js",
-          "webpack*.js",
-          "test/**/*.js",
-          "gulpfile.js"
-        ]
-      }
-    ],
-    "global-require": ["off", "never"],
-    "func-names": ["off", "never"],
-    "react/jsx-filename-extension": [
-      1,
-      {
-        "extensions": [".js", ".jsx"]
-      }
-    ],
-    "react/prop-types": "off",
-    "no-plusplus": "off",
-    "react/destructuring-assignment": "off",
-    "import/prefer-default-export": "off",
-    "react/button-has-type": "off",
-    "jsx-a11y/no-autofocus": "off",
-    "jsx-a11y/click-events-have-key-events": "off",
-    "jsx-a11y/no-static-element-interactions": "off",
-    "jsx-a11y/anchor-is-valid": "off",
-    "prefer-destructuring": "off",
-    "curly": ["error", "all"],
-    "no-underscore-dangle": [
-      "error",
-      {
-        "allow": ["_source"]
-      }
-    ],
-    "react/jsx-fragments": "off",
-    "no-await-in-loop": "off"
-  },
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "globals": {
-    "jQuery": true,
-    "$": true,
-    "window": true,
-    "document": true
-  }
+    "rules": {
+        "import/no-extraneous-dependencies": "off",
+        "no-underscore-dangle": "off"
+    }
 }
