@@ -1,9 +1,35 @@
 {
-    "extends": [
-        "../.eslintrc.json"
-    ],
+    "root": true,
+    "extends": ["prettier", "react-app"],
+    "plugins": ["prettier"],
+    "parser": "@babel/eslint-parser",
     "rules": {
-        "import/no-extraneous-dependencies": "off",
-        "no-underscore-dangle": "off"
+        "no-await-in-loop": "off",
+        "no-console": "off",
+        "prettier/prettier": "error",
+        "no-unused-vars": "error",
+        "global-require": ["off", "never"],
+        "func-names": ["off", "never"],
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "react/prop-types": "off",
+        "no-plusplus": "off",
+        "react/destructuring-assignment": "off",
+        "import/prefer-default-export": "off",
+        "react/button-has-type": "off",
+        "jsx-a11y/no-autofocus": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/no-static-element-interactions": "off",
+        "jsx-a11y/anchor-is-valid": "off",
+        "prefer-destructuring": "off",
+        "no-nested-ternary": "off",
+        "camelcase": "off",
+        "curly": ["error", "all"]
+    },
+    "env": {
+        "browser": true
+    },
+    "globals": {
+        "window": true,
+        "document": true
     }
 }
