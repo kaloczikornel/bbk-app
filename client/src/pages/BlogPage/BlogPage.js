@@ -1,7 +1,8 @@
 import React from 'react';
+import { Grid } from '@mui/material';
 import PagePaper from '../../components/PagePaper';
 import BlogPostCard from './components/BlogPostCard';
-import { Grid } from '@mui/material';
+
 const MOCK_BLOG_POSTS = [
     {
         title: 'This is a blogpost about atuff',
@@ -79,7 +80,7 @@ export const BlogPage = () => {
                             sumUp={e.sumUp}
                             content={e.content}
                             author={e.author}
-                        ></BlogPostCard>
+                        />
                     </Grid>
                 );
             })}

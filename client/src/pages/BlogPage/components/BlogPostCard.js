@@ -18,6 +18,9 @@ export default function OutlinedCard({ title, sumUp, content, author }) {
                     <Typography sx={{ marginTop: 4 }} color="text.secondary">
                         {author}
                     </Typography>
+                    <Typography sx={{ marginTop: 4 }} color="text.secondary">
+                        {content}
+                    </Typography>
                 </CardContent>
                 <CardActions>
                     <Button size="small">Tovább...</Button>
