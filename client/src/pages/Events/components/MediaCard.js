@@ -24,11 +24,17 @@ export default function MediaCard({ name, place, description, date }) {
                     {description}
                 </Typography>
                 <Typography variant="subtitle2" color="text.secondary" marginTop={2}>
-                    {`${place} ${format(date, 'yyyy-MM-ii')}`}
+                    {`${place} ${format(new Date(date), 'yyyy-MM-ii')}`}
                 </Typography>
             </CardContent>
             <CardActions>
                 <Button size="small">Jelentkezés</Button>
+                <Button color="secondary" size="small">
+                    Megtekintés
+                </Button>
+                <Button color="error" size="small">
+                    Törlés
+                </Button>
             </CardActions>
         </Card>
     );
