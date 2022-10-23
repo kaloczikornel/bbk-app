@@ -13,7 +13,7 @@ export default function PagePaper({
             sx={{ margin: 1, marginTop, paddingBottom, marginBottom, padding: 8 }}
             elevation={12}
         >
-            <Typography variant="h2">{title}</Typography>
+            <Typography variant="h4">{title}</Typography>
             <Grid
                 container
                 spacing={3}
