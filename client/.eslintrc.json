@@ -3,12 +3,7 @@
         "browser": true,
         "es2021": true
     },
-    "extends": [
-        "react-app",
-        "plugin:react/recommended",
-        "airbnb",
-        "plugin:prettier/recommended"
-    ],
+    "extends": ["react-app", "plugin:react/recommended", "airbnb", "plugin:prettier/recommended"],
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -16,9 +11,7 @@
         "ecmaVersion": 12,
         "sourceType": "module"
     },
-    "plugins": [
-        "react"
-    ],
+    "plugins": ["react"],
     "rules": {
         "no-console": "off",
         "prettier/prettier": [
@@ -30,11 +23,17 @@
             }
         ],
         "react/jsx-filename-extension": "off",
-        "react/function-component-definition": ["error", {
-            "namedComponents": ["function-declaration", "arrow-function"],
-            "unnamedComponents": ["function-expression", "arrow-function"]
-        }],
+        "react/function-component-definition": [
+            "error",
+            {
+                "namedComponents": ["function-declaration", "arrow-function"],
+                "unnamedComponents": ["function-expression", "arrow-function"]
+            }
+        ],
         "react/prop-types": "off",
-        "react/jsx-props-no-spreading": "off"
+        "react/jsx-props-no-spreading": "off",
+        "react/react-in-jsx-scope": "off",
+        "import/no-named-as-default": "off",
+        "react/jsx-no-constructed-context-values": "off"
     }
 }
