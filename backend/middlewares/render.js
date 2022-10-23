@@ -6,7 +6,9 @@ const requireOption = require('./requireOption');
 
 module.exports = function (objectrepository, viewName) {
     return function (req, res) {
-        res.render(viewName);
-        //res.end('Template: ' + viewName);
+        if (req.query.json === undefined) {
+            return res.render(viewName);
+        }
+        return res.send(res.locals);
     };
 };

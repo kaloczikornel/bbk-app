@@ -1,8 +1,11 @@
 const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
-    const UserModel = objectrepository.UserModel;
+    const { UserModel } = objectrepository;
     return (req, res, next) => {
+        if (req.query.json !== undefined) {
+            return next();
+        }
         if (typeof req.session.user_id !== 'undefined') {
             return UserModel.findOne(
                 {
