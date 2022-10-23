@@ -6,13 +6,13 @@ import { Menu } from '@mui/icons-material';
 export const MenuComponent = ({ items }) => {
     return (
         <>
-            {items.map((item, idx) => (
+            {items.map((item) => (
                 <Button
                     color="inherit"
-                    variant={'text'}
+                    variant="text"
                     component={NavLink}
                     to={item.path}
-                    key={idx}
+                    key={item.label}
                 >
                     {item.label}
                 </Button>
@@ -27,8 +27,8 @@ export const DrawerComponent = ({ items }) => {
         <>
             <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)} anchor="left">
                 <List>
-                    {items.map((item, i) => (
-                        <ListItem key={i} onClick={() => setOpenDrawer(false)}>
+                    {items.map((item) => (
+                        <ListItem key={item.label} onClick={() => setOpenDrawer(false)}>
                             <ListItemText>
                                 <Button
                                     color="inherit"
