@@ -46,7 +46,7 @@ const NavBarComponent = () => {
                 ) : (
                     <>
                         <span style={{ marginRight: 10 }}>
-                            <img src="https://via.placeholder.com/150" alt="BBK" height="40" />
+                            <img src="bbk_logo.png" alt="BBK" height="40" />
                         </span>
                         <MenuComponent items={mainItems} />
                     </>

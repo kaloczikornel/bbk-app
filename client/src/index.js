@@ -7,6 +7,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AuthContextProvider } from './hooks/useAuth';
 import constructTheme from './theme';
+import { DOMAIN, CLIENT_ID } from './config';
 
 const theme = constructTheme();
 
@@ -15,8 +16,8 @@ root.render(
     <React.StrictMode>
         <BrowserRouter>
             <Auth0Provider
-                domain="dev-1ckx0xgt.us.auth0.com"
-                clientId="p6AgBJyX7B3k7I8D2wLeNjo7PAm7m2lC"
+                domain={DOMAIN}
+                clientId={CLIENT_ID}
                 redirectUri={window.location.origin}
             >
                 <AuthContextProvider>

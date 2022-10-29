@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
-import { Avatar, Divider, IconButton, Stack, Typography } from '@mui/material';
+import { Avatar, Divider, Grid, IconButton, Stack, Typography } from '@mui/material';
 import { Edit } from '@mui/icons-material';
 
 export const UserCard = ({ name, email, idCardNumber, livingType, profilePic, openModal }) => {
@@ -14,24 +14,40 @@ export const UserCard = ({ name, email, idCardNumber, livingType, profilePic, op
                     <Typography variant="body2" color="text.secondary">
                         {email}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        {idCardNumber}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        {livingType}
-                    </Typography>
                 </Stack>
                 <IconButton sx={{ alignSelf: 'flex-start' }} onClick={() => openModal()}>
-                    <Edit sx={{ fontSize: 14 }} />
+                    <Edit sx={{ fontSize: 26 }} />
                 </IconButton>
             </Box>
             <Divider />
-            <Stack
+            <Grid
+                container
                 direction="row"
                 alignItems="center"
                 justifyContent="space-between"
-                sx={{ px: 2, py: 1, bgcolor: 'background.default' }}
-            />
+                sx={{ px: 2, py: 1 }}
+            >
+                <Grid item xs={6}>
+                    <Typography variant="body2" color="text.secondary">
+                        Személyi ig. szám
+                    </Typography>
+                </Grid>
+                <Grid item xs={6}>
+                    <Typography variant="body2" color="text.secondary" textAlign="end">
+                        {idCardNumber}
+                    </Typography>
+                </Grid>
+                <Grid item xs={6}>
+                    <Typography variant="body2" color="text.secondary">
+                        Kolis vagy?
+                    </Typography>
+                </Grid>
+                <Grid item xs={6}>
+                    <Typography variant="body2" color="text.secondary" textAlign="end">
+                        {livingType}
+                    </Typography>
+                </Grid>
+            </Grid>
         </Card>
     );
 };

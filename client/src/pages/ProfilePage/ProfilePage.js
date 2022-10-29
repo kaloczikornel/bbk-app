@@ -62,7 +62,7 @@ export const ProfilePage = () => {
                 <Grid item xs={12} md={6}>
                     <UserCard
                         name={userData.name}
-                        emial={userData.email}
+                        email={userData.email}
                         livingType={userData.livingType}
                         idCardNumber={userData.idCardNumber}
                         profilePic={userData.profilePic}
