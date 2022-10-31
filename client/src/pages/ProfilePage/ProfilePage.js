@@ -4,19 +4,19 @@ import { CircularProgress, Grid, Stack, Typography } from '@mui/material';
 import PagePaper from '../../components/PagePaper';
 import MediaCard from './components/MediaCard';
 import UserCard from './components/UserCard';
-import { useAuth0 } from '@auth0/auth0-react';
 import UserEditModal from './components/UserEditModal';
 import { AXIOS_METHOD, useApi } from '../../hooks/useApi';
+import { useAuth } from '../../hooks/useAuth';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export const ProfilePage = () => {
+    const { dbUser } = useAuth();
     const { user } = useAuth0();
-    const [dbUser, setDbUser] = useState(null);
     const [events, setEvents] = useState([]);
     const [openModal, setOpenModal] = useState(false);
-    const [data, loading, error, apiCallback] = useApi(AXIOS_METHOD.GET, `/user/${user.sub}`);
     const [eventData, eventLoading, eventError, eventApiCallback] = useApi(
         AXIOS_METHOD.GET,
-        `/applies/${user.sub}`
+        `/applies/${dbUser?._id}`
     );
 
     useEffect(() => {
@@ -24,19 +24,15 @@ export const ProfilePage = () => {
     }, [eventData]);
 
     useEffect(() => {
-        setDbUser(data.user);
-    }, [data]);
-
-    useEffect(() => {
-        if (!openModal) {
+        if (!openModal && typeof apiCallback !== 'undefined') {
             apiCallback();
         }
     }, [openModal]);
 
     return (
         <PagePaper title="Profilom">
-            {loading && <CircularProgress />}
-            {dbUser && !loading && !error && (
+            {eventLoading && <CircularProgress />}
+            {dbUser && !eventLoading && !eventError && (
                 <Grid container justifyContent="center" alignItems="center" spacing={2}>
                     <Grid item xs={12} md={6}>
                         <Stack

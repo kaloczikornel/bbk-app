@@ -5,6 +5,7 @@ import PagePaper from '../../components/PagePaper';
 import MediaCard from './components/MediaCard';
 import { AXIOS_METHOD, doApiCall, useApi } from '../../hooks/useApi';
 import EventCreateEditModal from './components/EventCreateEditModal';
+import { useAuth } from '../../hooks/useAuth';
 
 export const EventsPage = () => {
     const [events, setEvents] = useState([]);
@@ -12,22 +13,26 @@ export const EventsPage = () => {
     const [data, loading, error, apiCallback] = useApi(AXIOS_METHOD.GET, '/events?json');
     const [editEvent, setEditEvent] = useState(null);
     const { isAuthenticated } = useAuth0();
+    const { isAdmin } = useAuth();
 
     useEffect(() => {
         if (!isAuthenticated) {
             (async () => {
-                await doApiCall(AXIOS_METHOD.GET, '/events?json', null, setEvents);
+                const res = await doApiCall(
+                    AXIOS_METHOD.GET,
+                    '/events?json',
+                    (response) => response,
+                    setEvents
+                );
+                setEvents(res.events);
             })();
-            if (events) {
-                setEvents((prevState) => prevState.events);
-            }
         }
         if (data) {
             setEvents(data.events);
         } else {
             setEvents([]);
         }
-    }, [data, events, isAuthenticated]);
+    }, [data, isAuthenticated]);
 
     useEffect(() => {
         if (!open) {
@@ -41,9 +46,11 @@ export const EventsPage = () => {
     };
     return (
         <>
-            <Button size="small" onClick={() => setOpen(true)}>
-                Esemény létrehozása
-            </Button>
+            {isAdmin() && (
+                <Button size="small" onClick={() => setOpen(true)}>
+                    Esemény létrehozása
+                </Button>
+            )}
             <PagePaper title="Események">
                 {loading && <LinearProgress />}
                 {error && <Typography variant="h5">Hupszi valami gond van...</Typography>}

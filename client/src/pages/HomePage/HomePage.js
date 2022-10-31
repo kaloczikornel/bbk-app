@@ -1,8 +1,10 @@
 import React from 'react';
 import { Container, Grid, Typography } from '@mui/material';
+import { useAuth } from '../../hooks/useAuth';
 
 // TODO sum up page, what we are, what do we do, maybe who we are...
 export const HomePage = () => {
+    const { isAdmin } = useAuth();
     return (
         <Container maxWidth="1080px">
             <Typography variant="h2" textAlign="center" marginBottom={16}>

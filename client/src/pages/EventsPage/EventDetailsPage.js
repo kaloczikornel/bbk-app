@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import {
     Checkbox,
+    CircularProgress,
     Paper,
     Table,
     TableBody,
@@ -11,16 +12,16 @@ import {
     TableRow,
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
 import { AXIOS_METHOD, doApiCall, useApi } from '../../hooks/useApi';
+import { useAuth } from '../../hooks/useAuth';
 
 export const EventDetailsPage = () => {
     const [applicants, setApplicants] = useState([]);
-    const { user } = useAuth0();
+    const { dbUser } = useAuth();
     const { eventId } = useParams();
     const [data, loading, error, apiCallback] = useApi(
         AXIOS_METHOD.GET,
-        `/applicants/${eventId}/${user.sub}`
+        `/applicants/${eventId}/${dbUser?._id}`
     );
 
     useEffect(() => {
@@ -53,7 +54,10 @@ export const EventDetailsPage = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {applicants &&
+                    {loading && <CircularProgress />}
+                    {!loading &&
+                        !error &&
+                        applicants &&
                         applicants.length !== 0 &&
                         applicants.map((row) => (
                             <TableRow

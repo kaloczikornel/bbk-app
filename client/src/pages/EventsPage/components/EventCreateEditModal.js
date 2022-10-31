@@ -12,11 +12,11 @@ import { Form, Formik } from 'formik';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { useAuth0 } from '@auth0/auth0-react';
 import { AXIOS_METHOD, doApiCall } from '../../../hooks/useApi';
+import { useAuth } from '../../../hooks/useAuth';
 
 export const UserEditModal = ({ open, handleClose, event }) => {
-    const { user } = useAuth0();
+    const { dbUser } = useAuth();
     const handleSave = async (values) => {
         if (event) {
             await doApiCall(AXIOS_METHOD.PATCH, `/event/${event._id}`, handleClose, handleClose, {
@@ -24,7 +24,7 @@ export const UserEditModal = ({ open, handleClose, event }) => {
                 place: values.place,
                 date: values.date,
                 description: values.description,
-                auth0Id: user.sub,
+                userId: dbUser._id,
             });
         } else {
             await doApiCall(AXIOS_METHOD.POST, '/event', handleClose, handleClose, {
@@ -32,7 +32,7 @@ export const UserEditModal = ({ open, handleClose, event }) => {
                 place: values.place,
                 date: values.date,
                 description: values.description,
-                auth0Id: user.sub,
+                userId: dbUser._id,
             });
         }
     };
