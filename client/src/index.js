@@ -15,17 +15,17 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <BrowserRouter>
-            <Auth0Provider
-                domain={DOMAIN}
-                clientId={CLIENT_ID}
-                redirectUri={window.location.origin}
-            >
-                <AuthContextProvider>
-                    <ThemeProvider theme={theme}>
+            <ThemeProvider theme={theme}>
+                <Auth0Provider
+                    domain={DOMAIN}
+                    clientId={CLIENT_ID}
+                    redirectUri={window.location.origin}
+                >
+                    <AuthContextProvider>
                         <App />
-                    </ThemeProvider>
-                </AuthContextProvider>
-            </Auth0Provider>
+                    </AuthContextProvider>
+                </Auth0Provider>
+            </ThemeProvider>
         </BrowserRouter>
     </React.StrictMode>
 );
