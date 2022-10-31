@@ -20,6 +20,8 @@ root.render(
                     domain={DOMAIN}
                     clientId={CLIENT_ID}
                     redirectUri={window.location.origin}
+                    audient="https://bbk-app.hu"
+                    consent="read:name"
                 >
                     <AuthContextProvider>
                         <App />

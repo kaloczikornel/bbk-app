@@ -23,28 +23,60 @@ export function AuthContextProvider({ children }) {
     useEffect(() => {
         (async () => {
             if (user) {
-                const token = await getAccessTokenSilently({
-                    audience: 'https://bbk-app.hu',
-                });
-                if (token) {
-                    setAccessToken(token);
+                try {
+                    const token = await getAccessTokenSilently({
+                        audience: 'https://bbk-app.hu',
+                        scope: 'read:name',
+                    });
+                    if (token) {
+                        setAccessToken(token);
+                    }
+                } catch (e) {
+                    try {
+                        const newToken = await getAccessTokenWithPopup({
+                            audience: 'https://bbk-app.hu',
+                            scope: 'read:name',
+                        });
+                        setAccessToken(newToken);
+                    } catch (err) {
+                        console.log(err);
+                    }
                 }
             }
         })();
-    }, [setAccessToken, getAccessTokenSilently, user]);
+    }, [setAccessToken, getAccessTokenSilently, user, getAccessTokenWithPopup]);
 
     useEffect(() => {
         (async () => {
             if (user && accessToken) {
-                const res = await axios.get(`${BASE_URL}/user/${user.sub}`, {
-                    headers: {
-                        authorization: `Bearer ${accessToken}`,
-                    },
-                });
-                setDbUser(res.data.user);
+                try {
+                    const res = await axios.get(`${BASE_URL}/user/${user.sub}`, {
+                        headers: {
+                            authorization: `Bearer ${accessToken}`,
+                        },
+                    });
+                    if (res.data.user === null) {
+                        const loginRes = await axios.post(
+                            `${BASE_URL}/login`,
+                            {
+                                user,
+                            },
+                            {
+                                headers: {
+                                    authorization: `Bearer ${accessToken}`,
+                                },
+                            }
+                        );
+                        setDbUser(loginRes.data.user);
+                    } else {
+                        setDbUser(res.data.user);
+                    }
+                } catch (e) {
+                    console.log(e);
+                }
             }
         })();
-    }, [user, accessToken]);
+    }, [user, accessToken, getAccessTokenWithPopup]);
 
     const isAdmin = () => {
         if (!dbUser) {
