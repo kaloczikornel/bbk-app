@@ -26,16 +26,10 @@ const NavBarComponent = () => {
         },
     ];
     if (isAuthenticated) {
-        mainItems.push(
-            {
-                path: '/me',
-                label: 'Profilom',
-            },
-            {
-                path: '/test',
-                label: 'TEST',
-            }
-        );
+        mainItems.push({
+            path: '/me',
+            label: 'Profilom',
+        });
     }
 
     return (
