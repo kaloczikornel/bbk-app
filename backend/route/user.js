@@ -20,7 +20,7 @@ module.exports = function (app) {
         ApplicantModel,
     };
     app.get('/user/:auth0id', checkJwt, getUserByAuth0Id(objRepo), sendData());
-    app.post('/user/:userid', checkJwt, getUserById(objRepo), saveUser(objRepo));
+    app.patch('/user/:userid', checkJwt, getUserById(objRepo), saveUser(objRepo));
     app.use(
         '/users',
         checkJwt,
