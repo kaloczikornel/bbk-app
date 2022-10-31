@@ -3,7 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
 import { CircularProgress, Container } from '@mui/material';
 import axios from 'axios';
-import { BASE_URL } from '../../hooks/useApi';
+import { BASE_URL } from '../../config';
 
 function Login() {
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
@@ -18,7 +18,6 @@ function Login() {
                 setLoading(true);
                 const token = await getAccessTokenSilently({
                     audience: 'https://bbk-app.hu',
-                    scope: 'read:events',
                 });
                 if (user && token) {
                     const res = await axios.post(
