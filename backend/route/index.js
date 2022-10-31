@@ -1,15 +1,14 @@
 const auth = require('../middlewares/auth/auth');
-const inverseAuth = require('../middlewares/auth/inverseAuth');
-const sendForgotten = require('../middlewares/auth/sendForgotten');
-const loginDataCheck = require('../middlewares/auth/loginDataCheck');
-const uniqueEmail = require('../middlewares/auth/uniqueEmail');
-const uniqueNick = require('../middlewares/auth/uniqueNick');
 const logout = require('../middlewares/auth/logout');
 const getLoginData = require('../middlewares/auth/getLoginData');
+const { checkJwt } = require('../middlewares/auth0/checkJWT');
+const loginUser = require('../middlewares/auth/loginUser');
 
 const getEvents = require('../middlewares/event/getEvents');
 const getEventByID = require('../middlewares/event/getEventByID');
 const getEventsByIds = require('../middlewares/event/getEventsByIds');
+const getUserByAuth0Id = require('../middlewares/user/getUserByAuth0Id');
+const getUserById = require('../middlewares/user/getUserById');
 const saveEvent = require('../middlewares/event/saveEvent');
 const delEvent = require('../middlewares/event/delEvent');
 
@@ -23,13 +22,14 @@ const getUsersByIds = require('../middlewares/user/getUsersByIds');
 
 const saveApplicant = require('../middlewares/applicant/saveApplicant');
 const getApplicants = require('../middlewares/applicant/getApplicants');
+const getApplicantsWithUsers = require('../middlewares/applicant/getApplicantsWithUsers');
 const delApplicants = require('../middlewares/applicant/delApplicants');
 const getUserApplies = require('../middlewares/applicant/getUserApplies');
 const delApplicant = require('../middlewares/applicant/delApplicant');
 const getApplicant = require('../middlewares/applicant/getApplicant');
 const checkIfAlreadyApplied = require('../middlewares/applicant/checkIfAlreadyApplied');
 
-const render = require('../middlewares/render');
+const sendData = require('../middlewares/sendData');
 
 const UserModel = require('../models/user');
 const BlogModel = require('../models/blog');
@@ -43,115 +43,101 @@ module.exports = function (app) {
         EventModel,
         ApplicantModel,
     };
-
-    app.use(
-        '/reg',
-        inverseAuth(objRepo),
-        uniqueEmail(objRepo),
-        uniqueNick(objRepo),
-        saveUser(objRepo),
-        render(objRepo, 'registration')
-    );
-    app.use('/login', inverseAuth(objRepo), loginDataCheck(objRepo), render(objRepo, 'login'));
-    app.use(
-        '/forgotten',
-        inverseAuth(objRepo),
-        sendForgotten(objRepo),
-        render(objRepo, 'forgotten')
-    );
+    app.use('/login', checkJwt, loginUser(objRepo));
     app.get('/logout', auth(objRepo), logout(objRepo));
 
-    app.get(
-        '/event/:eventid/apply',
-        auth(objRepo),
+    app.get('/events', getLoginData(objRepo), getEvents(objRepo), sendData(objRepo, 'events'));
+    app.post('/event', checkJwt, getLoginData(objRepo), saveEvent(objRepo));
+    app.patch(
+        '/event/:eventid',
+        checkJwt,
         getLoginData(objRepo),
         getEventByID(objRepo),
-        checkIfAlreadyApplied(objRepo),
-        render(objRepo, 'apply')
+        saveEvent(objRepo)
     );
-    app.post(
-        '/event/:eventid/apply',
-        auth(objRepo),
-        getLoginData(objRepo),
-        getEventByID(objRepo),
-        checkIfAlreadyApplied(objRepo),
-        saveApplicant(objRepo)
-    );
-    app.get('/events', getLoginData(objRepo), getEvents(objRepo), render(objRepo, 'events'));
-    app.use(
-        '/event/:eventid/applicants',
-        auth(objRepo),
-        getLoginData(objRepo),
-        getEventByID(objRepo),
-        getApplicants(objRepo),
-        getUsersByIds(objRepo),
-        saveApplicant(objRepo),
-        render(objRepo, 'applicants')
-    );
-    app.use(
-        '/newevent',
-        auth(objRepo),
-        getLoginData(objRepo),
-        saveEvent(objRepo),
-        render(objRepo, 'newEvent')
-    );
-    app.get(
-        '/delevent/:eventid',
-        auth(objRepo),
+    app.delete(
+        '/event/:eventid',
+        checkJwt,
         getLoginData(objRepo),
         getEventByID(objRepo),
         getApplicants(objRepo),
         delApplicants(objRepo),
         delEvent(objRepo)
     );
+
+    // what is this
     app.get(
-        '/delapplicant/:eventid',
-        auth(objRepo),
+        '/event/:eventid/apply',
+        checkJwt,
         getLoginData(objRepo),
+        getEventByID(objRepo),
+        checkIfAlreadyApplied(objRepo),
+        sendData(objRepo, 'apply')
+    );
+    app.post(
+        '/event/:eventid/apply',
+        checkJwt,
+        getLoginData(objRepo),
+        getEventByID(objRepo),
+        checkIfAlreadyApplied(objRepo),
+        saveApplicant(objRepo)
+    );
+    app.get(
+        '/applicants/:eventid/:userid',
+        checkJwt,
+        getUserByAuth0Id(objRepo),
+        getApplicantsWithUsers(objRepo),
+        sendData(objRepo, 'applicants')
+    );
+    app.delete(
+        '/applicant/:eventid/:userid',
+        checkJwt,
+        getUserByAuth0Id(objRepo),
         getEventByID(objRepo),
         getApplicant(objRepo),
         delApplicant(objRepo)
     );
+    app.patch(
+        '/applicant/:eventid/:userid',
+        checkJwt,
+        getUserById(objRepo),
+        getEventByID(objRepo),
+        getApplicant(objRepo),
+        saveApplicant(objRepo)
+    );
+    app.get(
+        '/applicant/:userid',
+        checkJwt,
+        getUserByAuth0Id(objRepo),
+        getUserApplies(objRepo),
+        getEventsByIds(objRepo),
+        sendData(objRepo)
+    );
 
-    app.get('/blog', getLoginData(objRepo), getBlogposts(objRepo), render(objRepo, 'blog'));
+    app.get('/blog', getLoginData(objRepo), getBlogposts(objRepo), sendData(objRepo, 'blog'));
     app.get(
         '/delpost/:blogpostid',
-        auth(objRepo),
+        checkJwt,
         getLoginData(objRepo),
         getBlogposts(objRepo),
         delPost(objRepo)
     );
     app.use(
         '/newblog',
-        auth(objRepo),
+        checkJwt,
         getLoginData(objRepo),
         savePost(objRepo),
-        render(objRepo, 'newBlog')
+        sendData(objRepo, 'newBlog')
     );
 
-    app.use(
-        '/profile',
-        auth(objRepo),
-        getLoginData(objRepo),
-        getUserApplies(objRepo),
-        getEventsByIds(objRepo),
-        saveUser(objRepo),
-        render(objRepo, 'profile')
-    );
+    app.get('/user/:userid', checkJwt, getUserByAuth0Id(objRepo), sendData());
+    app.post('/user/:userid', checkJwt, getUserById(objRepo), saveUser(objRepo));
     app.use(
         '/users',
-        auth(objRepo),
+        checkJwt,
         getLoginData(objRepo),
         getUsers(objRepo),
         saveUser(objRepo),
-        render(objRepo, 'users')
-    );
-
-    app.get(
-        '/',
-        getLoginData(objRepo),
-        getEvents(objRepo),
-        getBlogposts(objRepo),
-        render(objRepo, 'home')
+        sendData(objRepo, 'users')
     );
 };

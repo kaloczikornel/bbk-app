@@ -3,7 +3,6 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const { errorHandler } = require('./middlewares/auth0/errorHandle');
-const { checkJwt } = require('./middlewares/auth0/checkJWT');
 
 const app = express();
 
@@ -33,11 +32,14 @@ app.use((err,req,res,next)=>{
 });
  */
 
-// app.use(checkJwt);
 app.use(errorHandler);
 
 // Load routing
-require('./route/index')(app);
+// require('./route/index')(app);
+require('./route/applicant')(app);
+require('./route/event')(app);
+require('./route/user')(app);
+require('./route/auth')(app);
 
 app.listen(port, function () {
     console.log(`On: ${port}`);
