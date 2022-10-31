@@ -1,6 +1,6 @@
 const getEventByID = require('../middlewares/event/getEventByID');
 const getEventsByIds = require('../middlewares/event/getEventsByIds');
-const getUserByAuth0Id = require('../middlewares/user/getUserByAuth0Id');
+const checkPermission = require('../middlewares/auth/checkPermission');
 const getUserById = require('../middlewares/user/getUserById');
 const saveApplicant = require('../middlewares/applicant/saveApplicant');
 const getApplicantsWithUsers = require('../middlewares/applicant/getApplicantsWithUsers');
@@ -24,17 +24,17 @@ module.exports = function (app) {
         ApplicantModel,
     };
     app.post(
-        '/applicant/:eventid/:auth0id',
+        '/applicant/:eventid/:userid',
         checkJwt,
-        getUserByAuth0Id(objRepo),
+        getUserById(objRepo),
         getEventByID(objRepo),
         checkIfAlreadyApplied(objRepo),
         saveApplicant(objRepo)
     );
     app.get(
-        '/applicants/:eventid/:auth0id',
+        '/applicants/:eventid/:userid',
         checkJwt,
-        getUserByAuth0Id(objRepo),
+        getUserById(objRepo),
         getApplicantsWithUsers(objRepo),
         sendData(objRepo, 'applicants')
     );
@@ -42,22 +42,23 @@ module.exports = function (app) {
         '/applicant/:eventid/:userid',
         checkJwt,
         getUserById(objRepo),
+        checkPermission(objRepo),
         getEventByID(objRepo),
         getApplicant(objRepo),
         saveApplicant(objRepo)
     );
     app.delete(
-        '/applicant/:eventid/:auth0id',
+        '/applicant/:eventid/:userid',
         checkJwt,
-        getUserByAuth0Id(objRepo),
+        getUserById(objRepo),
         getEventByID(objRepo),
         getApplicant(objRepo),
         delApplicant(objRepo)
     );
     app.get(
-        '/applies/:auth0id',
+        '/applies/:userid',
         checkJwt,
-        getUserByAuth0Id(objRepo),
+        getUserById(objRepo),
         getUserApplies(objRepo),
         getEventsByIds(objRepo),
         sendData(objRepo)

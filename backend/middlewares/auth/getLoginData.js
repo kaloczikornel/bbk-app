@@ -3,10 +3,10 @@ const requireOption = require('../requireOption');
 module.exports = function (objectrepository) {
     const { UserModel } = objectrepository;
     return (req, res, next) => {
-        if (typeof req.body.auth0Id !== 'undefined') {
+        if (typeof req.body.userId !== 'undefined') {
             return UserModel.findOne(
                 {
-                    auth0Id: req.body.auth0Id,
+                    _id: req.body.userId,
                 },
                 (err, user) => {
                     if (err) {
