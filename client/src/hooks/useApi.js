@@ -1,15 +1,15 @@
 import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useAuth } from './useAuth';
+import { BASE_URL } from '../config';
 
-export const BASE_URL = 'http://localhost:4000';
 export const AXIOS_METHOD = {
     GET: 'GET',
     POST: 'POST',
     DELETE: 'DELETE',
     PATCH: 'PATCH',
 };
-let accessToken = null;
+let localAccessToken = null;
 
 export async function doApiCall(method, uri, onSuccess, onFailure = false, data = undefined) {
     try {
@@ -17,7 +17,7 @@ export async function doApiCall(method, uri, onSuccess, onFailure = false, data 
             method,
             url: `${BASE_URL}${uri}`,
             data,
-            headers: accessToken ? { authorization: `Bearer ${accessToken}` } : {},
+            headers: localAccessToken ? { authorization: `Bearer ${localAccessToken}` } : {},
         });
 
         onSuccess(res.data);
@@ -34,20 +34,11 @@ export function useApi(method, uri, postData = undefined, deps = []) {
     const [data, setData] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-    const { getAccessTokenSilently, getAccessTokenWithPopup } = useAuth();
+    const { accessToken } = useAuth();
 
     useEffect(() => {
-        (async () => {
-            try {
-                accessToken = await getAccessTokenSilently({
-                    audience: 'https://bbk-app.hu',
-                    scope: 'read:events',
-                });
-            } catch (e) {
-                console.log(e);
-            }
-        })();
-    }, [getAccessTokenSilently, getAccessTokenWithPopup]);
+        localAccessToken = accessToken;
+    }, [accessToken]);
 
     const apiCallCallback = useCallback(
         async (apiPostData) => {
