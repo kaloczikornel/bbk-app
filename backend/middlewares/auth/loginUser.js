@@ -9,9 +9,7 @@ module.exports = function (objectrepository) {
         const { user } = req.body;
 
         const userInDb = await UserModel.findOne({
-            where: {
-                auth0Id: user.sub,
-            },
+            auth0Id: user.sub,
         });
         if (!userInDb) {
             const newUser = new UserModel();
@@ -24,10 +22,11 @@ module.exports = function (objectrepository) {
             newUser.role = 'user';
             await newUser.save((error) => {
                 if (error) {
-                    next(error);
+                    return next(error);
                 }
+                return res.send({ user: newUser });
             });
         }
-        return res.send({ success: true });
+        return res.send({ user: userInDb });
     };
 };
