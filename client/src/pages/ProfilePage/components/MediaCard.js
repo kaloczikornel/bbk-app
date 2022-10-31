@@ -5,12 +5,12 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import format from 'date-fns/format';
-import { useAuth0 } from '@auth0/auth0-react';
 import SnackbarComponent from '../../../components/SnackbarComponent';
 import { AXIOS_METHOD, doApiCall } from '../../../hooks/useApi';
+import { useAuth } from '../../../hooks/useAuth';
 
 export function MediaCard({ event, apiCallback }) {
-    const { user } = useAuth0();
+    const { dbUser } = useAuth();
     const [openSnackbar, setOpenSnackbar] = useState(false);
     // eslint-disable-next-line no-unused-vars
     const [message, setMessage] = useState('Siker!');
@@ -20,7 +20,7 @@ export function MediaCard({ event, apiCallback }) {
     const handleDelete = async () => {
         await doApiCall(
             AXIOS_METHOD.DELETE,
-            `/applicant/${event._id}/${user.sub}`,
+            `/applicant/${event._id}/${dbUser._id}`,
             setOpenSnackbar(true)
         );
         apiCallback();

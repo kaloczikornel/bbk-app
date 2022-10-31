@@ -19,7 +19,7 @@ import { AXIOS_METHOD, doApiCall } from '../../../hooks/useApi';
 export const UserEditModal = ({ open, handleClose, user }) => {
     const handleSave = async (values) => {
         await doApiCall(
-            AXIOS_METHOD.POST,
+            AXIOS_METHOD.PATCH,
             `/user/${user._id}`,
             handleClose,
             {},
