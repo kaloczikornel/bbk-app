@@ -16,7 +16,7 @@ module.exports = function (objectrepository) {
             if (err) {
                 return next(err);
             }
-            return res.redirect(`back`);
+            return res.status(200).json({ success: true });
         });
     };
 };

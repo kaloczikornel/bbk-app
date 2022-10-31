@@ -16,7 +16,7 @@ const checkJwt = jwt({
     audience: process.env.AUTH0_AUDIENCE,
     issuer: `https://${process.env.AUTH0_DOMAIN}/`,
     algorithms: ['RS256'],
-}).unless({ path: ['/'] });
+});
 
 module.exports = {
     checkJwt,

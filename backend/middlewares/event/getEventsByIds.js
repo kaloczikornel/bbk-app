@@ -5,7 +5,7 @@ module.exports = function (objectrepository) {
     return (req, res, next) => {
         EventModel.find(
             {
-                _id: { $in: res.locals.applies_ids },
+                _id: { $in: res.locals.applicantIds },
             },
             (err, events) => {
                 if (err) {

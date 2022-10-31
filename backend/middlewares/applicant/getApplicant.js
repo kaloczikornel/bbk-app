@@ -12,13 +12,13 @@ module.exports = function (objectrepository) {
         ApplicantModel.findOne(
             {
                 _user: res.locals.user._id,
-                _event: res.locals.theEvent._id,
+                _event: res.locals.event._id,
             },
-            (err, user) => {
+            (err, applicant) => {
                 if (err) {
                     return next(err);
                 }
-                res.locals.applicant = user;
+                res.locals.applicant = applicant;
                 return next();
             }
         );

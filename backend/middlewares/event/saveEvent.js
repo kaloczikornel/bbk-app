@@ -2,18 +2,26 @@ const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
     const EventModel = requireOption(objectrepository, 'EventModel');
-    return (req, res, next) => {
+    return async (req, res, next) => {
         if (
             typeof req.body.name === 'undefined' ||
             typeof req.body.place === 'undefined' ||
             typeof req.body.date === 'undefined' ||
             typeof req.body.description === 'undefined' ||
+            typeof res.locals.user === 'undefined' ||
             typeof res.locals.error !== 'undefined'
         ) {
-            return next();
+            return res.status(400).json({ error: 'Fields are missing!' });
         }
-        res.locals.event = new EventModel();
-
+        if (res.locals.user.role !== 'admin') {
+            return res.status(400).json({ error: 'Access denied!' });
+        }
+        if (res.locals.event === undefined) {
+            res.locals.event = new EventModel();
+        }
+        if (!res.locals.event) {
+            return res.status(404).json({ error: 'Event is not found!' });
+        }
         res.locals.event.name = req.body.name;
         res.locals.event.place = req.body.place;
         res.locals.event.date = req.body.date;
@@ -24,7 +32,7 @@ module.exports = function (objectrepository) {
             if (err) {
                 return next(err);
             }
-            return res.redirect('/events');
+            return res.send(res.locals.event);
         });
     };
 };

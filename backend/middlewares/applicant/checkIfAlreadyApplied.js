@@ -13,14 +13,14 @@ module.exports = function (objectrepository) {
         ApplicantModel.findOne(
             {
                 _user: res.locals.user._id,
-                _event: res.locals.theEvent._id,
+                _event: res.locals.event._id,
             },
             (err, apply) => {
                 if (err) {
                     return next(err);
                 }
                 if (apply !== null) {
-                    return res.redirect('/profile');
+                    return res.status(400).json({ error: 'Already applied!' });
                 }
                 return next();
             }

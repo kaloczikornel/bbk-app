@@ -11,7 +11,7 @@ module.exports = function (objectrepository) {
                 if (err) {
                     next(err);
                 }
-                res.locals.theEvent = e;
+                res.locals.event = e;
                 return next();
             }
         );
