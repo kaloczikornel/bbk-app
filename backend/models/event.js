@@ -1,4 +1,4 @@
-const Schema = require('mongoose').Schema;
+const { Schema } = require('mongoose');
 const db = require('../config/db');
 
 const Event = db.model('Event', {
@@ -8,8 +8,8 @@ const Event = db.model('Event', {
     description: String,
     _organizer: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
-    }
+        ref: 'User',
+    },
 });
 
 module.exports = Event;

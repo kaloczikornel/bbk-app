@@ -1,15 +1,13 @@
-const Schema = require('mongoose').Schema;
 const db = require('../config/db');
 
 const User = db.model('User', {
-    username: String,
     name: String,
     email: String,
     idCardNumber: String,
-    livingType: String,
+    canGetIn: Boolean,
     hasCard: Boolean,
-    password: String,
-    authority: String
+    auth0Id: String,
+    role: String,
 });
 
 module.exports = User;

@@ -1,4 +1,4 @@
-const Schema = require('mongoose').Schema;
+const { Schema } = require('mongoose');
 const db = require('../config/db');
 
 const Blog = db.model('Blog', {
@@ -7,8 +7,8 @@ const Blog = db.model('Blog', {
     content: String,
     _author: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
-    }
+        ref: 'User',
+    },
 });
 
 module.exports = Blog;

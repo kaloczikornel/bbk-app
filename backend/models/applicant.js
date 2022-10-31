@@ -1,4 +1,4 @@
-const Schema = require('mongoose').Schema;
+const { Schema } = require('mongoose');
 const db = require('../config/db');
 
 const Applicant = db.model('Applicant', {
@@ -7,12 +7,12 @@ const Applicant = db.model('Applicant', {
     came: Boolean,
     _event: {
         type: Schema.Types.ObjectId,
-        ref: 'Event'
+        ref: 'Event',
     },
     _user: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
-    }
+        ref: 'User',
+    },
 });
 
 module.exports = Applicant;
