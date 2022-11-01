@@ -13,9 +13,6 @@ module.exports = function (objectrepository) {
         ) {
             return res.status(400).json({ error: 'Fields are missing!' });
         }
-        if (res.locals.user.role !== 'admin') {
-            return res.status(400).json({ error: 'Access denied!' });
-        }
         if (res.locals.event === undefined) {
             res.locals.event = new EventModel();
         }
