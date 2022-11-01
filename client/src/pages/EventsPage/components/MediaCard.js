@@ -25,8 +25,8 @@ export default function MediaCard({ event, onEdit, apiCallback }) {
         await doApiCall(
             AXIOS_METHOD.DELETE,
             `/event/${event._id}`,
-            setSnackbarOpen(true),
-            {},
+            () => setSnackbarOpen(true),
+            () => {},
             {
                 userId: dbUser._id,
             }
