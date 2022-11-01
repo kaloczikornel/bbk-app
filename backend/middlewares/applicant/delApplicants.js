@@ -9,10 +9,12 @@ const requireOption = require('../requireOption');
 module.exports = function (objectrepository) {
     const ApplicantModel = requireOption(objectrepository, 'ApplicantModel');
     return (req, res, next) => {
-        ApplicantModel.remove(
+        ApplicantModel.deleteMany(
             {
                 _user: { $in: res.locals.applicants.map((e) => e._user) },
+                _event: res.locals.event._id,
             },
+
             (err) => {
                 if (err) {
                     return next(err);
