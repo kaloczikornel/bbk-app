@@ -1,6 +1,7 @@
 const getLoginData = require('../middlewares/auth/getLoginData');
 const { checkJwt } = require('../middlewares/auth0/checkJWT');
 const getBlogposts = require('../middlewares/blog/getBlogposts');
+const getBlogpost = require('../middlewares/blog/getBlogpost');
 const savePost = require('../middlewares/blog/savePost');
 const delPost = require('../middlewares/blog/delPost');
 const sendData = require('../middlewares/sendData');
@@ -17,18 +18,13 @@ module.exports = function (app) {
         ApplicantModel,
     };
     app.get('/blog', getLoginData(objRepo), getBlogposts(objRepo), sendData(objRepo, 'blog'));
-    app.get(
-        '/delpost/:blogpostid',
+    app.delete(
+        '/blog/:postid',
         checkJwt,
         getLoginData(objRepo),
-        getBlogposts(objRepo),
+        getBlogpost(objRepo),
         delPost(objRepo)
     );
-    app.use(
-        '/newblog',
-        checkJwt,
-        getLoginData(objRepo),
-        savePost(objRepo),
-        sendData(objRepo, 'newBlog')
-    );
+    app.post('/blog', checkJwt, getLoginData(objRepo), savePost(objRepo));
+    app.patch('/blog', checkJwt, getLoginData(objRepo), getBlogpost(objRepo), savePost(objRepo));
 };
